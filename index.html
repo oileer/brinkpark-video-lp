@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monte seu pedido - Brinkpark</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Google Tag Manager -->
+    <script>(function (w, d, s, l, i) {
+            w[l] = w[l] || []; w[l].push({
+                'gtm.start':
+                    new Date().getTime(), event: 'gtm.js'
+            }); var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+                    'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-NVFJB7JC');</script>
+    <!-- End Google Tag Manager -->
+    <style>
+        :root {
+            --white: #ffffff;
+            --text-dark: #1F2937;
+            --text-gray: #6B7280;
+            --primary-green: #16A34A;
+            --primary-green-dark: #15803D;
+            --whatsapp-green: #25D366;
+            --border-light: #f0f0f0;
+            --radius-md: 12px;
+            --radius-lg: 16px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', Arial, sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        body {
+            background: #0d0d0d;
+        }
+
+        .app-container {
+            width: 100%;
+            max-width: 430px;
+            margin: 0 auto;
+            min-height: 100vh;
+            min-height: 100dvh;
+            position: relative;
+            background: #000;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        /* Barra de progresso */
+        .progress-bar {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: rgba(255, 255, 255, .2);
+            z-index: 30;
+        }
+
+        .progress-bar span {
+            display: block;
+            height: 100%;
+            width: 0;
+            background: var(--primary-green);
+            transition: width .5s ease;
+        }
+
+        /* Player */
+        .stage {
+            position: relative;
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .stage video {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0;
+            transition: opacity .25s;
+        }
+
+        .stage video.ativo {
+            opacity: 1;
+        }
+
+        /* Botão mute */
+        .mute-btn {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            z-index: 40;
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            border: none;
+            background: rgba(0, 0, 0, .55);
+            color: #fff;
+            font-size: 18px;
+            cursor: pointer;
+            display: none;
+        }
+
+        /* Tela inicial (gate de autoplay) */
+        .start-gate {
+            position: absolute;
+            inset: 0;
+            z-index: 50;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 18px;
+            background: linear-gradient(rgba(0, 0, 0, .45), rgba(0, 0, 0, .75));
+            text-align: center;
+            padding: 24px;
+        }
+
+        .start-gate h1 {
+            color: #fff;
+            font-size: 22px;
+            font-weight: 800;
+            line-height: 1.3;
+        }
+
+        .start-gate p {
+            color: rgba(255, 255, 255, .85);
+            font-size: 15px;
+        }
+
+        .play-btn {
+            width: 84px;
+            height: 84px;
+            border-radius: 50%;
+            border: none;
+            background: var(--primary-green);
+            color: #fff;
+            font-size: 30px;
+            cursor: pointer;
+            box-shadow: 0 0 0 10px rgba(22, 163, 74, .3);
+            animation: pulsar 1.6s infinite;
+        }
+
+        @keyframes pulsar {
+            0% { box-shadow: 0 0 0 0 rgba(22, 163, 74, .45); }
+            70% { box-shadow: 0 0 0 18px rgba(22, 163, 74, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(22, 163, 74, 0); }
+        }
+
+        /* Overlay de escolhas */
+        .choices {
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 40;
+            padding: 20px 16px calc(20px + env(safe-area-inset-bottom));
+            background: linear-gradient(transparent, rgba(0, 0, 0, .85) 40%);
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            transform: translateY(105%);
+            transition: transform .35s ease;
+        }
+
+        .choices.visivel {
+            transform: translateY(0);
+        }
+
+        .choices .pergunta {
+            color: #fff;
+            font-size: 17px;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 4px;
+        }
+
+        .btn-escolha {
+            width: 100%;
+            padding: 15px 18px;
+            border: none;
+            border-radius: var(--radius-md);
+            background: var(--white);
+            color: var(--text-dark);
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: transform .1s;
+        }
+
+        .btn-escolha:active {
+            transform: scale(.97);
+        }
+
+        .btn-escolha.destaque {
+            background: var(--primary-green);
+            color: #fff;
+        }
+
+        .btn-escolha.whats {
+            background: var(--whatsapp-green);
+            color: #fff;
+        }
+
+        .btn-escolha small {
+            display: block;
+            font-weight: 500;
+            font-size: 13px;
+            opacity: .75;
+        }
+
+        .link-fallback {
+            text-align: center;
+            margin-top: 4px;
+        }
+
+        .link-fallback a {
+            color: rgba(255, 255, 255, .7);
+            font-size: 13px;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NVFJB7JC" height="0" width="0"
+            style="display:none;visibility:hidden"></iframe></noscript>
+
+    <div class="app-container">
+        <div class="progress-bar"><span id="progresso"></span></div>
+
+        <div class="stage">
+            <video id="vidA" playsinline preload="auto"></video>
+            <video id="vidB" playsinline preload="auto"></video>
+
+            <button class="mute-btn" id="muteBtn">🔊</button>
+
+            <div class="start-gate" id="gate">
+                <h1>Monte o pedido da sua<br>cama elástica em 1 minuto</h1>
+                <p>Toque para começar com som 👇</p>
+                <button class="play-btn" id="playBtn">▶</button>
+            </div>
+
+            <div class="choices" id="choices"></div>
+        </div>
+    </div>
+
+    <script>
+        // ===== CONFIG =====
+        var WHATS_URL = 'https://linkdowhats.app/kxx'; // link geral (dúvidas)
+        var WHATS_NUMERO = '5549998282916';
+        var HUB_MODELOS = 'https://oferta.brinkpark.com.br/oferta-v3';
+
+        // ===== GRAFO DO FUNIL =====
+        var FUNIL = {
+            boasVindas: {
+                video: 'videos/01-boas-vindas.mp4', etapa: 1,
+                next: 'regiao'
+            },
+            regiao: {
+                video: 'videos/02-regiao.mp4', etapa: 2,
+                pergunta: 'Qual a sua região?',
+                botoes: [
+                    { texto: 'Sul', salva: { regiao: 'Sul' }, vai: 'finalidade' },
+                    { texto: 'Sudeste', salva: { regiao: 'Sudeste' }, vai: 'finalidade' },
+                    { texto: 'Nordeste', salva: { regiao: 'Nordeste' }, vai: 'finalidade' },
+                    { texto: 'Outra região', salva: { regiao: 'Outra' }, acao: 'whatsOutraRegiao' }
+                ]
+            },
+            finalidade: {
+                video: 'videos/03-finalidade.mp4', etapa: 3,
+                pergunta: 'Você quer a cama elástica para...',
+                botoes: [
+                    { texto: '💰 Locação (alugar e lucrar)', salva: { finalidade: 'Locação' }, vai: 'locacao' },
+                    { texto: '🏠 Ter em casa', salva: { finalidade: 'Residencial' }, vai: 'residencial' }
+                ]
+            },
+            residencial: {
+                video: 'videos/04-residencial.mp4', etapa: 4,
+                pergunta: 'Escolha o modelo:',
+                botoes: [
+                    { texto: 'Cama Elástica 2,44m', destaque: true, salva: { modelo: '2,44m' }, vai: 'modelo244' },
+                    { texto: 'Cama Elástica 3,05m', destaque: true, salva: { modelo: '3,05m' }, vai: 'modelo305' },
+                    { texto: '💬 Tirar dúvida no WhatsApp', whats: true, acao: 'whatsDuvida' }
+                ]
+            },
+            locacao: {
+                video: 'videos/05-locacao.mp4', etapa: 4,
+                pergunta: 'Escolha o modelo:',
+                botoes: [
+                    { texto: 'Cama Elástica 2,44m Nacional', destaque: true, salva: { modelo: '2,44m Nacional' }, vai: 'modelo244' },
+                    { texto: 'Cama Elástica 4,27m Nacional', destaque: true, salva: { modelo: '4,27m Nacional' }, vai: 'modelo427' },
+                    { texto: '💬 Tirar dúvida no WhatsApp', whats: true, acao: 'whatsDuvida' }
+                ]
+            },
+            modelo244: {
+                video: 'videos/06-modelo-244.mp4', etapa: 5,
+                next: 'fechamento', urlDetalhes: 'https://oferta.brinkpark.com.br/modelos/cama-elastica-244/'
+            },
+            modelo305: {
+                video: 'videos/07-modelo-305.mp4', etapa: 5,
+                next: 'fechamento', urlDetalhes: 'https://oferta.brinkpark.com.br/modelos/cama-elastica-305/'
+            },
+            modelo427: {
+                video: 'videos/08-modelo-427.mp4', etapa: 5,
+                next: 'fechamento', urlDetalhes: 'https://oferta.brinkpark.com.br/modelos/cama-elastica-427/'
+            },
+            fechamento: {
+                video: 'videos/10-fechamento.mp4', etapa: 6,
+                pergunta: 'Falta só um passo 👇',
+                botoes: [
+                    { texto: '✅ Fazer meu pedido no WhatsApp', whats: true, acao: 'whatsPedido' },
+                    { texto: 'Ver fotos e detalhes do modelo', acao: 'verDetalhes' }
+                ]
+            }
+        };
+        var TOTAL_ETAPAS = 6;
+
+        // ===== ESTADO =====
+        var estado = { regiao: null, finalidade: null, modelo: null };
+        var noAtual = null;
+        var vids = [document.getElementById('vidA'), document.getElementById('vidB')];
+        var vidAtivo = 0;
+        var choicesEl = document.getElementById('choices');
+        var mutado = false;
+
+        function track(evento, dados) {
+            window.dataLayer = window.dataLayer || [];
+            var p = { event: evento };
+            for (var k in dados) p[k] = dados[k];
+            window.dataLayer.push(p);
+        }
+
+        function irPara(nome) {
+            var no = FUNIL[nome];
+            noAtual = nome;
+            document.getElementById('progresso').style.width = (no.etapa / TOTAL_ETAPAS * 100) + '%';
+            choicesEl.classList.remove('visivel');
+
+            // double buffering: alterna os dois <video>
+            var proximo = vids[1 - vidAtivo];
+            var atual = vids[vidAtivo];
+            proximo.src = no.video;
+            proximo.muted = mutado;
+            proximo.play().then(function () {
+                proximo.classList.add('ativo');
+                atual.classList.remove('ativo');
+                atual.pause();
+                vidAtivo = 1 - vidAtivo;
+            }).catch(function () {
+                // se play falhar (raro após o gate), tenta mudo
+                proximo.muted = true;
+                proximo.play();
+                proximo.classList.add('ativo');
+                atual.classList.remove('ativo');
+                vidAtivo = 1 - vidAtivo;
+            });
+
+            proximo.onended = function () { fimDoVideo(no); };
+            precarregar(no);
+            track('funil_etapa', { etapa: nome });
+        }
+
+        function precarregar(no) {
+            // pré-carrega os próximos vídeos possíveis via fetch (fica no cache HTTP)
+            var proximos = [];
+            if (no.next) proximos.push(FUNIL[no.next].video);
+            if (no.botoes) no.botoes.forEach(function (b) {
+                if (b.vai) proximos.push(FUNIL[b.vai].video);
+            });
+            proximos.slice(0, 3).forEach(function (url) {
+                fetch(url).catch(function () { });
+            });
+        }
+
+        function fimDoVideo(no) {
+            if (no.next) { irPara(no.next); return; }
+            if (no.botoes) mostrarBotoes(no);
+        }
+
+        function mostrarBotoes(no) {
+            choicesEl.innerHTML = '';
+            if (no.pergunta) {
+                var p = document.createElement('div');
+                p.className = 'pergunta';
+                p.textContent = no.pergunta;
+                choicesEl.appendChild(p);
+            }
+            no.botoes.forEach(function (b) {
+                var btn = document.createElement('button');
+                btn.className = 'btn-escolha' + (b.destaque ? ' destaque' : '') + (b.whats ? ' whats' : '');
+                btn.innerHTML = b.texto;
+                btn.onclick = function () {
+                    if (b.salva) for (var k in b.salva) { estado[k] = b.salva[k]; track('funil_escolha', b.salva); }
+                    if (b.acao) { acoes[b.acao](); return; }
+                    if (b.vai) irPara(b.vai);
+                };
+                choicesEl.appendChild(btn);
+            });
+            // fallback pra quem não quer vídeo
+            var fb = document.createElement('div');
+            fb.className = 'link-fallback';
+            fb.innerHTML = '<a href="' + HUB_MODELOS + '">prefiro ver os modelos direto</a>';
+            choicesEl.appendChild(fb);
+            choicesEl.classList.add('visivel');
+        }
+
+        // ===== AÇÕES =====
+        var acoes = {
+            whatsPedido: function () {
+                track('funil_whatsapp_click', { tipo: 'pedido', modelo: estado.modelo, regiao: estado.regiao, finalidade: estado.finalidade });
+                var msg = 'Olá! Quero fazer o pedido da cama elástica *' + (estado.modelo || '') +
+                    '* para *' + (estado.finalidade || '') + '*, região *' + (estado.regiao || '') +
+                    '*.\n\nMeus dados:\nNome: \nEndereço: \nTelefone: \nTelefone reserva: ';
+                window.location.href = 'https://wa.me/' + WHATS_NUMERO + '?text=' + encodeURIComponent(msg);
+            },
+            whatsDuvida: function () {
+                track('funil_whatsapp_click', { tipo: 'duvida' });
+                window.location.href = WHATS_URL;
+            },
+            whatsOutraRegiao: function () {
+                track('funil_whatsapp_click', { tipo: 'outra_regiao' });
+                var msg = 'Olá! Tenho interesse na cama elástica, mas sou de outra região. Vocês atendem minha cidade?';
+                window.location.href = 'https://wa.me/' + WHATS_NUMERO + '?text=' + encodeURIComponent(msg);
+            },
+            verDetalhes: function () {
+                var no = null;
+                // acha a página de detalhes do último modelo visto
+                if (estado.modelo && estado.modelo.indexOf('4,27') === 0) no = FUNIL.modelo427;
+                else if (estado.modelo && estado.modelo.indexOf('3,05') === 0) no = FUNIL.modelo305;
+                else no = FUNIL.modelo244;
+                track('funil_ver_detalhes', { modelo: estado.modelo });
+                window.location.href = no.urlDetalhes;
+            }
+        };
+
+        // ===== MUTE =====
+        var muteBtn = document.getElementById('muteBtn');
+        muteBtn.onclick = function () {
+            mutado = !mutado;
+            vids.forEach(function (v) { v.muted = mutado; });
+            muteBtn.textContent = mutado ? '🔇' : '🔊';
+        };
+
+        // ===== GATE INICIAL =====
+        document.getElementById('playBtn').onclick = function () {
+            document.getElementById('gate').style.display = 'none';
+            muteBtn.style.display = 'block';
+            track('funil_inicio', {});
+            irPara('boasVindas');
+        };
+    </script>
+</body>
+
+</html>

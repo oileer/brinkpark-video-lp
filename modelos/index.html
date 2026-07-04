@@ -1,0 +1,854 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modelo Cama Elástica - Brinkpark</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Google Tag Manager -->
+    <script>(function (w, d, s, l, i) {
+            w[l] = w[l] || []; w[l].push({
+                'gtm.start':
+                    new Date().getTime(), event: 'gtm.js'
+            }); var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+                    'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-NVFJB7JC');</script>
+    <!-- End Google Tag Manager -->
+    <style>
+        :root {
+            --white: #ffffff;
+            --bg-color: #ffffff;
+            --text-dark: #1F2937;
+            --text-gray: #6B7280;
+            --text-light-gray: #9CA3AF;
+            --primary-green: #16A34A;
+            --danger-red: #d10000;
+            --badge-red: #E7000B;
+            --badge-orange: #FF7A00;
+            --border-light: #f0f0f0;
+            --card-border: #E5E7EB;
+            --chevron-color: #D1D5DB;
+
+            --radius-sm: 8px;
+            --radius-md: 12px;
+            --radius-lg: 16px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', Arial, sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-color);
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .app-container {
+            width: 100%;
+            max-width: 430px;
+            margin: 0 auto;
+            background-color: var(--bg-color);
+            min-height: 100vh;
+            position: relative;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.03);
+            padding-bottom: 40px;
+        }
+
+        @media (max-width: 430px) {
+            .app-container {
+                max-width: 100%;
+                padding-left: 16px;
+                padding-right: 16px;
+                box-shadow: none;
+            }
+        }
+
+        /* 1) HEADER */
+        .app-header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 60px;
+            width: 100%;
+            position: relative;
+            background-color: var(--white);
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        @media (max-width: 430px) {
+            .app-header {
+                width: calc(100% + 32px);
+                margin-left: -16px;
+                margin-right: -16px;
+            }
+        }
+
+        .header-back-btn {
+            position: absolute;
+            left: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 24px;
+            height: 24px;
+        }
+
+        .header-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--text-dark);
+        }
+
+        .app-content {
+            padding: 24px 0 40px 0;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+            width: 100%;
+        }
+
+        /* 2) BANNER PROMOCIONAL */
+        .promo-banner {
+            width: 100%;
+            background-color: var(--danger-red);
+            border-radius: var(--radius-md);
+            padding: 18px;
+            color: var(--white);
+            box-shadow: 0 8px 16px rgba(209, 0, 0, 0.2);
+        }
+
+        .promo-banner-title {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .promo-banner-title img {
+            width: 20px;
+            height: 20px;
+        }
+
+        .promo-banner p {
+            font-size: 12px;
+            font-weight: 400;
+            line-height: 1.5;
+            opacity: 0.95;
+        }
+
+        /* 3) TÍTULO DA SEÇÃO */
+        .section-title {
+            font-size: 22px;
+            font-weight: 800;
+            text-align: center;
+            color: var(--text-dark);
+            width: 100%;
+        }
+
+        /* 3) SUBTÍTULO DA SEÇÃO */
+        .section-subtitle {
+            font-size: 18px;
+            font-weight: 600;
+            text-align: center;
+            color: var(--text-dark);
+            width: 100%;
+        }
+
+        /* 3) SUBTÍTULO2 DA SEÇÃO */
+        .section-subtitle2 {
+            font-size: 13px;
+            font-weight: 600;
+            text-align: center;
+            color: var(--text-dark);
+            width: 100%;
+        }
+
+        /* 4) BENEFÍCIOS */
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            width: 100%;
+        }
+
+        .benefit-card {
+            background-color: #f8f9fa;
+            border-radius: var(--radius-md);
+            padding: 16px 12px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            gap: 6px;
+            width: 100%;
+        }
+
+        .benefit-card img {
+            width: 28px;
+            height: 28px;
+            margin-bottom: 4px;
+        }
+
+        .benefit-title {
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--text-dark);
+            line-height: 1.2;
+        }
+
+        .benefit-subtitle {
+            font-size: 10px;
+            font-weight: 400;
+            color: var(--text-gray);
+        }
+
+        /* 5) CARD DE PRODUTOS RESTYLED NO SVG/DIVS */
+        .product-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            width: 100%;
+        }
+
+        .product-card {
+            width: 100%;
+            background-color: var(--white);
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+            padding: 14px;
+            position: relative;
+            text-decoration: none;
+            color: inherit;
+
+            display: grid;
+            grid-template-columns: 72px 1fr auto;
+            column-gap: 14px;
+            align-items: center;
+        }
+
+        /* Left Side: Thumbnail Wrapper */
+        .product-thumbnail-wrapper {
+            width: 72px;
+            height: 72px;
+            border-radius: 16px;
+            overflow: hidden;
+            background: #F3F4F6;
+            position: relative;
+            flex-shrink: 0;
+            display: block;
+        }
+
+        .product-thumbnail-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* Discount Badge - Using CSS exactly as requested, discarding SVGs to match the 100% accurate styling payload */
+        .discount-badge {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            min-width: 54px;
+            height: 24px;
+            padding: 0 10px;
+            border-radius: 999px;
+            background: var(--badge-red);
+            color: var(--white);
+            font-size: 12px;
+            font-weight: 700;
+            line-height: 24px;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.10);
+            z-index: 5;
+        }
+
+        /* Badge Últimas unidades */
+        .badge-last-units {
+            position: absolute;
+            top: -10px;
+            right: 12px;
+            background: var(--badge-orange);
+            color: var(--white);
+            font-size: 11px;
+            font-weight: 700;
+            height: 22px;
+            padding: 0 10px;
+            border-radius: 999px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            white-space: nowrap;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.10);
+            z-index: 5;
+        }
+
+        /* Middle Side: Text Block */
+        .product-text-block {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding-right: 4px;
+        }
+
+        .product-text-block h3 {
+            font-size: 16px;
+            line-height: 1.2;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 6px;
+        }
+
+        .product-subtitle {
+            font-size: 13px;
+            color: var(--text-gray);
+            margin-bottom: 8px;
+        }
+
+        .product-old-price {
+            font-size: 12px;
+            color: var(--text-light-gray);
+            text-decoration: line-through;
+        }
+
+        /* Right Side: Price Block */
+        .product-price-block {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            justify-content: center;
+            gap: 3px;
+        }
+
+        .price-installments {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--primary-green);
+        }
+
+        .price-main {
+            font-size: 18px;
+            font-weight: 800;
+            color: var(--primary-green);
+            line-height: 1.1;
+        }
+
+        .price-cash {
+            font-size: 12px;
+            color: var(--text-gray);
+            white-space: nowrap;
+        }
+
+        /* Chevron Icon */
+        .chevron-icon {
+            position: absolute;
+            right: 14px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 16px;
+            height: 16px;
+            opacity: 0.8;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .chevron-icon svg {
+            width: 14px;
+            height: 14px;
+            fill: none;
+            stroke: var(--chevron-color);
+            stroke-width: 2.5;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        /* Media Queries adjustments for tiny screens */
+        @media (max-width: 380px) {
+            .product-card {
+                padding: 12px;
+                grid-template-columns: 64px 1fr auto;
+                column-gap: 10px;
+            }
+
+            .product-thumbnail-wrapper {
+                width: 64px;
+                height: 64px;
+            }
+
+            .product-text-block h3 {
+                font-size: 14px;
+            }
+
+            .product-subtitle {
+                font-size: 11px;
+                margin-bottom: 4px;
+            }
+
+            .product-old-price {
+                font-size: 11px;
+            }
+
+            .price-main {
+                font-size: 16px;
+            }
+
+            .price-installments,
+            .price-cash {
+                font-size: 10px;
+            }
+
+            .badge-last-units {
+                right: 8px;
+                font-size: 10px;
+                padding: 0 8px;
+            }
+
+            .discount-badge {
+                left: 8px;
+                font-size: 11px;
+                padding: 0 8px;
+                min-width: 48px;
+            }
+        }
+
+        /* 6) AVALIAÇÃO */
+        .review-card {
+            background-color: #f1fdf4;
+            border-radius: var(--radius-lg);
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            gap: 8px;
+            width: 100%;
+        }
+
+        .stars-container {
+            display: flex;
+            gap: 4px;
+            justify-content: center;
+        }
+
+        .stars-container img {
+            width: 18px;
+            height: 18px;
+        }
+
+        .review-title {
+            font-size: 13px;
+            font-weight: 700;
+            color: #1a4f32;
+        }
+
+        .review-subtitle {
+            font-size: 11px;
+            font-weight: 500;
+            color: #3f6e54;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+        }
+
+        .review-subtitle img {
+            width: 12px;
+            height: 12px;
+        }
+
+        /* 7) CONFIANÇA / POR QUE COMPRAR */
+        .trust-card {
+            background-color: #f2fBFC;
+            border-radius: var(--radius-lg);
+            padding: 20px 16px;
+            width: 100%;
+        }
+
+        .trust-title {
+            font-size: 15px;
+            font-weight: 800;
+            color: var(--text-dark);
+            text-align: center;
+            margin-bottom: 18px;
+            width: 100%;
+        }
+
+        .trust-list {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            width: 100%;
+        }
+
+        .trust-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            width: 100%;
+        }
+
+        .trust-icon-container {
+            background-color: #e5f5f6;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .trust-icon-container img {
+            width: 28px;
+            height: 28px;
+        }
+
+        .trust-text {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+            padding-top: 2px;
+        }
+
+        .trust-text h4 {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--text-dark);
+        }
+
+        .trust-text p {
+            font-size: 11px;
+            font-weight: 400;
+            color: var(--text-gray);
+            line-height: 1.3;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NVFJB7JC" height="0" width="0"
+            style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+
+    <div class="app-container">
+
+        <!-- HEADER -->
+        <header class="app-header">
+            <div class="header-back-btn">
+                <a href="../">
+                    <img src="./assets/icon-chevron-left.svg" alt="Voltar">
+                </a>
+            </div>
+            <div class="header-title">Modelos</div>
+        </header>
+
+        <main class="app-content">
+
+            <!-- BANNER PROMOCIONAL -->
+            <div class="promo-banner">
+                <div class="promo-banner-title">
+                    <img src="./assets/icon-clock.svg" alt="Relógio">
+                    Oferta Especial - Tempo Limitado!
+                </div>
+                <p>Aproveite até 30% OFF + Frete Grátis para todo Brasil.<br>Promoção válida somente hoje!</p>
+            </div>
+
+            <!-- TÍTULO -->
+            <h2 class="section-title">Escolha seu modelo</h2>
+
+            <!-- BENEFÍCIOS -->
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <img src="./assets/icon-truck.svg" alt="Caminhão">
+                    <div class="benefit-title">Frete Grátis</div>
+                    <div class="benefit-subtitle">Todo Brasil</div>
+                </div>
+                <div class="benefit-card">
+                    <img src="./assets/icon-package.svg" alt="Caixa">
+                    <div class="benefit-title">Entrega Rápida</div>
+                    <div class="benefit-subtitle">7-15 dias</div>
+                </div>
+            </div>
+
+            <!-- LISTA DE PRODUTOS -->
+            <div class="product-list">
+
+
+                <!------------------ EUROPA ------------------>
+                <h2 class="section-subtitle">Modelo Europa</h2>
+                <h3 class="section-subtitle2">Seguras para ter em casa</h3>
+
+                <!-- PRODUTO: 1,44M EUROPA -->
+                <a href="./cama-elastica-144-europa/" class="product-card">
+                    <div class="discount-badge">-25%</div>
+                    <div class="product-thumbnail-wrapper">
+                        <img src="./assets/produto-144m.png" alt="Cama Elástica 1,44M">
+                    </div>
+
+                    <div class="product-text-block">
+                        <h3>Cama Elástica 1,44M</h3>
+                        <div class="product-subtitle">Modelo Europa</div>
+                        <div class="product-old-price">De R$ 1.000,00</div>
+                    </div>
+
+                    <div class="product-price-block">
+                        <div class="price-installments">12x sem juros</div>
+                        <div class="price-main">R$ 131,05</div>
+                        <div class="price-cash">ou R$ 747,00 à vista</div>
+                    </div>
+
+                    <div class="chevron-icon">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M9 18l6-6-6-6"></path>
+                        </svg>
+                    </div>
+                </a>
+
+                <!-- PRODUTO 1: 2,44M -->
+                <a href="./cama-elastica-244/" class="product-card">
+                    <div class="discount-badge">-13%</div>
+                    <div class="product-thumbnail-wrapper">
+                        <img src="./assets/produto-244m.png" alt="Cama Elástica 2,44M">
+                    </div>
+
+                    <div class="product-text-block">
+                        <h3>Cama Elástica 2,44M</h3>
+                        <div class="product-subtitle">Modelo Europa</div>
+                        <div class="product-old-price">De R$ 1600,00</div>
+                    </div>
+
+                    <div class="product-price-block">
+                        <div class="badge-last-units">Últimas unidades!</div>
+                        <div class="price-installments">12x sem juros</div>
+                        <div class="price-main">R$ 148,53</div>
+                        <div class="price-cash">ou R$ 1397,00 à vista</div>
+                    </div>
+
+                    <div class="chevron-icon">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M9 18l6-6-6-6"></path>
+                        </svg>
+                    </div>
+                </a>
+
+                <!-- PRODUTO 2: 3,05M -->
+                <a href="./cama-elastica-305/" class="product-card">
+                    <div class="discount-badge">-14%</div>
+                    <div class="product-thumbnail-wrapper">
+                        <img src="./assets/produto-305m.png" alt="Cama Elástica 3,05M">
+                    </div>
+
+                    <div class="product-text-block">
+                        <h3>Cama Elástica 3,05M</h3>
+                        <div class="product-subtitle">Modelo Europa</div>
+                        <div class="product-old-price">De R$ 2100,00</div>
+                    </div>
+
+                    <div class="product-price-block">
+                        <div class="price-installments">12x sem juros</div>
+                        <div class="price-main">R$ 190,89</div>
+                        <div class="price-cash">ou R$ 1797,00 à vista</div>
+                    </div>
+
+                    <div class="chevron-icon">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M9 18l6-6-6-6"></path>
+                        </svg>
+                    </div>
+                </a>
+
+
+                <!------------------ TRADICIONAL ------------------>
+                <h2 class="section-subtitle">Modelo Tradicional</h2>
+                <h3 class="section-subtitle2">Mais resistentes para locação</h3>
+
+
+                <!-- PRODUTO: 2,44M TRADICIONAL -->
+                <a href="./cama-elastica-244-tradicional/" class="product-card">
+                    <div class="discount-badge">-17%</div>
+                    <div class="product-thumbnail-wrapper">
+                        <img src="./assets/produto-244mtradicional.png" alt="Cama Elástica 2,44M">
+                    </div>
+
+                    <div class="product-text-block">
+                        <h3>Cama Elástica 2,44M</h3>
+                        <div class="product-subtitle">Modelo Tradicional</div>
+                        <div class="product-old-price">De R$ 1.800,00</div>
+                    </div>
+
+                    <div class="product-price-block">
+                        <div class="price-installments">12x sem juros</div>
+                        <div class="price-main">R$ 159,05</div>
+                        <div class="price-cash">ou R$ 1497,00 à vista</div>
+                    </div>
+
+                    <div class="chevron-icon">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M9 18l6-6-6-6"></path>
+                        </svg>
+                    </div>
+                </a>
+
+                <!-- PRODUTO: 3,05M TRADICIONAL -->
+                <a href="./cama-elastica-305-tradicional/" class="product-card">
+                    <div class="discount-badge">-21%</div>
+                    <div class="product-thumbnail-wrapper">
+                        <img src="./assets/produto-305mtradicional.png" alt="Cama Elástica 3,05M">
+                    </div>
+
+                    <div class="product-text-block">
+                        <h3>Cama Elástica 3,05M</h3>
+                        <div class="product-subtitle">Modelo Tradicional</div>
+                        <div class="product-old-price">De R$ 2.400,00</div>
+                    </div>
+
+                    <div class="product-price-block">
+                        <div class="badge-last-units">Últimas unidades!</div>
+                        <div class="price-installments">12x sem juros</div>
+                        <div class="price-main">R$ 201,69</div>
+                        <div class="price-cash">ou R$ 1897,00 à vista</div>
+                    </div>
+
+                    <div class="chevron-icon">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M9 18l6-6-6-6"></path>
+                        </svg>
+                    </div>
+                </a>
+
+
+
+                <!-- PRODUTO 3: 4,27M -->
+                <a href="./cama-elastica-366/" class="product-card">
+                    <div class="discount-badge">-17%</div>
+                    <div class="product-thumbnail-wrapper">
+                        <img src="./assets/produto-366m.png" alt="Cama Elástica 3,66M">
+                    </div>
+
+                    <div class="product-text-block">
+                        <h3>Cama Elástica 4,27M</h3>
+                        <div class="product-subtitle">Modelo Tradicional</div>
+                        <div class="product-old-price">De R$ 3500,00</div>
+                    </div>
+
+                    <div class="product-price-block">
+                        <div class="price-installments">12x sem juros</div>
+                        <div class="price-main">R$ 308,11</div>
+                        <div class="price-cash">ou R$ 2898,00 à vista</div>
+                    </div>
+
+                    <div class="chevron-icon">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M9 18l6-6-6-6"></path>
+                        </svg>
+                    </div>
+                </a>
+
+                <!-- PRODUTO 4: 4,90M -->
+                <a href="./cama-elastica-427/" class="product-card">
+                    <div class="discount-badge">-13%</div>
+                    <div class="product-thumbnail-wrapper">
+                        <img src="./assets/produto-427m.png" alt="Cama Elástica 4,27M">
+                    </div>
+
+                    <div class="product-text-block">
+                        <h3>Cama Elástica 4,90M</h3>
+                        <div class="product-subtitle">Modelo Tradicional</div>
+                        <div class="product-old-price">De R$ 4.000,00</div>
+                    </div>
+
+                    <div class="product-price-block">
+                        <div class="price-installments">12x sem juros</div>
+                        <div class="price-main">R$ 371,80</div>
+                        <div class="price-cash">ou R$ 3497,00 à vista</div>
+                    </div>
+
+                    <div class="chevron-icon">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M9 18l6-6-6-6"></path>
+                        </svg>
+                    </div>
+                </a>
+
+            </div>
+
+            <!-- AVALIAÇÃO -->
+            <div class="review-card">
+                <div class="stars-container">
+                    <img src="./assets/icon-star.svg" alt="Estrela">
+                    <img src="./assets/icon-star.svg" alt="Estrela">
+                    <img src="./assets/icon-star.svg" alt="Estrela">
+                    <img src="./assets/icon-star.svg" alt="Estrela">
+                    <img src="./assets/icon-star.svg" alt="Estrela">
+                </div>
+                <div class="review-title">+2.500 famílias brasileiras já compraram</div>
+                <div class="review-subtitle">
+                    Avaliação média 4.9/5.0
+                    <img src="./assets/icon-star.svg" alt="Estrela">
+                </div>
+            </div>
+
+            <!-- POR QUE COMPRAR CONOSCO? -->
+            <div class="trust-card">
+                <h3 class="trust-title">Por que comprar conosco?</h3>
+
+                <div class="trust-list">
+                    <div class="trust-item">
+                        <div class="trust-icon-container">
+                            <img src="./assets/icon-check-circle.svg" alt="Check">
+                        </div>
+                        <div class="trust-text">
+                            <h4>Garantia de 12 meses</h4>
+                            <p>Troca grátis em caso de defeito</p>
+                        </div>
+                    </div>
+
+                    <div class="trust-item">
+                        <div class="trust-icon-container">
+                            <img src="./assets/icon-check-circle.svg" alt="Check">
+                        </div>
+                        <div class="trust-text">
+                            <h4>7 dias para arrependimento</h4>
+                            <p>Devolução grátis se não gostar</p>
+                        </div>
+                    </div>
+
+                    <div class="trust-item">
+                        <div class="trust-icon-container">
+                            <img src="./assets/icon-check-circle.svg" alt="Check">
+                        </div>
+                        <div class="trust-text">
+                            <h4>Pagamento 100% seguro</h4>
+                            <p>Seus dados protegidos</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+</body>
+
+</html>

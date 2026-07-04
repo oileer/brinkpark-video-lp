@@ -1,0 +1,1432 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cama Elástica 3,05M - Brinkpark</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,600;0,700;1,400&display=swap"
+        rel="stylesheet">
+
+    <!-- Google Tag Manager -->
+    <script>(function (w, d, s, l, i) {
+            w[l] = w[l] || []; w[l].push({
+                'gtm.start':
+                    new Date().getTime(), event: 'gtm.js'
+            }); var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+                    'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-NVFJB7JC');</script>
+    <!-- End Google Tag Manager -->
+
+    <style>
+        :root {
+            --primary-red: #E7000B;
+            --primary-green: #00A63E;
+            --secondary-green: #00C950;
+            --dark-text: #101828;
+            --secondary-text: #4A5565;
+            --muted-text: #99A1AF;
+            --body-text-dark: #364153;
+            --light-surface: #F9FAFB;
+            --gray-placeholder: #F3F4F6;
+            --star-yellow: #F0B100;
+            --soft-green-bg: #F0FDF4;
+            --cta-gradient-start: #00A63E;
+            --cta-gradient-end: #008236;
+            --security-gradient-start: #EFF6FF;
+            --security-gradient-end: #F0FDF4;
+            --security-border: #B9F8CF;
+            --white: #FFFFFF;
+            --soft-red-text: #FFE2E2;
+            --soft-green-text: #DCFCE7;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        body {
+            background-color: var(--white);
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .app-container {
+            width: 100%;
+            max-width: 495px;
+            margin: 0 auto;
+            background-color: var(--white);
+            min-height: 100vh;
+            position: relative;
+        }
+
+        /* HEADER */
+        .app-header {
+            display: flex;
+            align-items: center;
+            height: 73px;
+            width: 100%;
+            background-color: var(--white);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            padding: 0 16px;
+            position: relative;
+        }
+
+        .header-back-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            text-decoration: none;
+        }
+
+        .header-back-btn svg {
+            stroke: #0A0A0A;
+            width: 24px;
+            height: 24px;
+        }
+
+        .header-title {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 18px;
+            font-weight: 600;
+            line-height: 28px;
+            color: #0A0A0A;
+        }
+
+        /* HERO GALLERY */
+        .hero-gallery {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 1/1;
+            background-color: var(--gray-placeholder);
+            overflow: hidden;
+            touch-action: pan-y;
+        }
+
+        .slider-track {
+            display: flex;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .slider-image {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            flex-shrink: 0;
+            background: #fff;
+        }
+
+        .gallery-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0px 10px 15px -3px rgba(0, 0, 0, 0.1), 0px 4px 6px -4px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            z-index: 2;
+        }
+
+        .gallery-nav.prev {
+            left: 16px;
+        }
+
+        .gallery-nav.next {
+            right: 16px;
+        }
+
+        .gallery-nav svg {
+            stroke: #1E2939;
+            width: 24px;
+            height: 24px;
+        }
+
+        .gallery-bullets {
+            position: absolute;
+            bottom: 24px;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+            z-index: 2;
+        }
+
+        .bullet {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.6);
+        }
+
+        .bullet.active {
+            width: 24px;
+            height: 8px;
+            border-radius: 999px;
+            background-color: var(--white);
+        }
+
+        /* MAIN CONTENT AREA */
+        .content-area {
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        /* ALERT BANNER */
+        .urgency-banner {
+            background-color: var(--primary-red);
+            border-radius: 14px;
+            min-height: 68px;
+            padding: 12px 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 8px;
+        }
+
+        .urgency-left {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .urgency-icon svg {
+            width: 24px;
+            height: 24px;
+            stroke: var(--white);
+            opacity: 0.54;
+            flex-shrink: 0;
+        }
+
+        .urgency-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .urgency-text h4 {
+            font-size: 14px;
+            font-weight: 700;
+            line-height: 18px;
+            color: var(--white);
+        }
+
+        .urgency-text p {
+            font-size: 11px;
+            font-weight: 400;
+            line-height: 14px;
+            color: var(--soft-red-text);
+        }
+
+        .promo-timer {
+            display: flex;
+            gap: 6px;
+            flex-shrink: 0;
+        }
+
+        .timer-box {
+            background-color: var(--white);
+            border-radius: 6px;
+            padding: 4px 2px;
+            text-align: center;
+            min-width: 40px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .timer-value {
+            font-size: 14px;
+            font-weight: 800;
+            color: var(--primary-red);
+            line-height: 1.1;
+        }
+
+        .timer-label {
+            font-size: 9px;
+            font-weight: 600;
+            color: var(--secondary-text);
+            text-transform: uppercase;
+        }
+
+        /* PRODUCT INFO */
+        .product-header-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-title {
+            font-size: 24px;
+            font-weight: 700;
+            line-height: 32px;
+            color: var(--dark-text);
+        }
+
+        .product-subtitle {
+            font-size: 16px;
+            font-weight: 400;
+            line-height: 24px;
+            color: var(--secondary-text);
+            margin-top: 4px;
+        }
+
+        .product-rating {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 8px;
+        }
+
+        .stars {
+            display: flex;
+            gap: 0;
+        }
+
+        .stars svg {
+            width: 16px;
+            height: 16px;
+            fill: var(--star-yellow);
+            stroke: var(--star-yellow);
+        }
+
+        .rating-text {
+            font-size: 14px;
+            font-weight: 400;
+            color: var(--secondary-text);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .rating-separator {
+            color: var(--muted-text);
+        }
+
+        .rating-sales {
+            font-size: 14px;
+            font-weight: 400;
+            color: var(--secondary-text);
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .rating-sales svg {
+            stroke: var(--secondary-text);
+            width: 16px;
+            height: 16px;
+        }
+
+        .product-capacity {
+            font-size: 14px;
+            font-weight: 400;
+            line-height: 20px;
+            color: var(--secondary-text);
+            margin-top: 16px;
+        }
+
+        /* PRICE BLOCK */
+        .price-section {
+            display: flex;
+            flex-direction: column;
+            margin-top: 8px;
+        }
+
+        .price-installment-wrap {
+            display: flex;
+            flex-direction: row;
+            align-items: baseline;
+            gap: 8px;
+            margin-bottom: 4px;
+        }
+
+        .price-installment {
+            font-size: 36px;
+            font-weight: 700;
+            line-height: 40px;
+            color: var(--primary-green);
+        }
+
+        .price-installment1 {
+            font-size: 22px;
+            font-weight: 700;
+            line-height: 28px;
+            color: var(--primary-green);
+            display: block;
+            margin-bottom: -2px;
+        }
+
+        .price-old {
+            font-size: 18px;
+            font-weight: 400;
+            line-height: 28px;
+            color: var(--muted-text);
+            text-decoration: line-through;
+        }
+
+        .price-cash {
+            font-size: 18px;
+            font-weight: 400;
+            line-height: 28px;
+            color: var(--secondary-text);
+        }
+
+        .price-pix {
+            font-size: 14px;
+            font-weight: 600;
+            line-height: 20px;
+            color: var(--primary-green);
+            margin-top: 4px;
+        }
+
+        /* FREIGHT BANNERS */
+        .freight-banners {
+            display: flex;
+            gap: 12px;
+            margin-top: 16px;
+        }
+
+        .freight-card {
+            flex: 1;
+            background-color: var(--light-surface);
+            border-radius: 10px;
+            height: 56px;
+            display: flex;
+            align-items: center;
+            padding-left: 12px;
+            gap: 8px;
+        }
+
+        .freight-card svg {
+            width: 20px;
+            height: 20px;
+            stroke: var(--primary-green);
+            stroke-width: 1.66;
+            flex-shrink: 0;
+            fill: none;
+        }
+
+        .freight-card-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .freight-card-text h5 {
+            font-size: 12px;
+            font-weight: 600;
+            line-height: 16px;
+            color: var(--dark-text);
+        }
+
+        .freight-card-text p {
+            font-size: 12px;
+            font-weight: 400;
+            line-height: 16px;
+            color: var(--secondary-text);
+        }
+
+        /* DESCRIPTION */
+        .product-description {
+            font-size: 16px;
+            line-height: 26px;
+            font-weight: 400;
+            color: var(--body-text-dark);
+            margin-top: 16px;
+        }
+
+        /* SPECS */
+        .technical-specs {
+            margin-top: 8px;
+        }
+
+        .specs-title {
+            font-size: 18px;
+            font-weight: 700;
+            line-height: 28px;
+            color: var(--dark-text);
+            margin-bottom: 16px;
+        }
+
+        .specs-list {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .spec-item {
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+        }
+
+        .spec-icon-wrapper {
+            background-color: var(--soft-green-bg);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .spec-icon-wrapper svg {
+            width: 20px;
+            height: 20px;
+            stroke: var(--primary-green);
+            stroke-width: 1.66;
+            fill: none;
+        }
+
+        .spec-text {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+            margin-top: 2px;
+        }
+
+        .spec-text h4 {
+            font-size: 14px;
+            font-weight: 600;
+            line-height: 20px;
+            color: var(--dark-text);
+        }
+
+        .spec-text p {
+            font-size: 14px;
+            font-weight: 400;
+            line-height: 20px;
+            color: var(--secondary-text);
+        }
+
+        /* CTAS */
+        .cta-group {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin-top: 16px;
+        }
+
+        .btn-primary {
+            width: 100%;
+            height: 68px;
+            background-color: var(--primary-green);
+            color: var(--white);
+            border-radius: 999px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            font-size: 18px;
+            font-weight: 700;
+            line-height: 28px;
+            text-decoration: none;
+            box-shadow: 0px 20px 25px -5px rgba(0, 0, 0, 0.1), 0px 8px 10px -6px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-primary svg {
+            width: 24px;
+            height: 24px;
+            stroke: var(--white);
+            stroke-width: 2;
+            fill: none;
+        }
+
+        .btn-outline {
+            width: 100%;
+            height: 58px;
+            background-color: var(--white);
+            color: var(--primary-green);
+            border: 1px solid var(--primary-green);
+            border-radius: 999px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            line-height: 24px;
+            text-decoration: none;
+        }
+
+        .btn-outline svg {
+            width: 20px;
+            height: 20px;
+            stroke: var(--primary-green);
+            stroke-width: 1.66;
+            fill: none;
+        }
+
+        /* REVIEWS */
+        .testimonials {
+            margin-top: 16px;
+        }
+
+        .section-title {
+            font-size: 18px;
+            font-weight: 700;
+            line-height: 28px;
+            color: var(--dark-text);
+            margin-bottom: 12px;
+        }
+
+        .testimonial-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .testimonial-card {
+            background-color: var(--light-surface);
+            border: 1px solid #E5E7EB;
+            border-radius: 14px;
+            padding: 17px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .testimonial-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .testimonial-avatar {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background-color: var(--gray-placeholder);
+            object-fit: cover;
+        }
+
+        .testimonial-info {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .testimonial-info-top {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .testimonial-name {
+            font-size: 14px;
+            font-weight: 600;
+            line-height: 20px;
+            color: var(--dark-text);
+        }
+
+        .stars-small {
+            display: flex;
+        }
+
+        .stars-small svg {
+            width: 14px;
+            height: 14px;
+            fill: var(--star-yellow);
+            stroke: var(--star-yellow);
+        }
+
+        .testimonial-text {
+            font-size: 14px;
+            font-weight: 400;
+            font-style: italic;
+            line-height: 20px;
+            color: var(--body-text-dark);
+        }
+
+        /* REAL PHOTOS GALLERY */
+        .real-photos-section {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-top: 16px;
+        }
+
+        .real-photos-slider {
+            width: 100%;
+            aspect-ratio: 1/1;
+            background-color: var(--light-surface);
+            border-radius: 16px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* GUARANTEES */
+        .guarantees-card {
+            background: linear-gradient(90deg, var(--security-gradient-start) 0%, var(--security-gradient-end) 100%);
+            border: 1px solid var(--security-border);
+            border-radius: 16px;
+            padding: 25px;
+            margin-top: 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .guarantees-title {
+            font-size: 18px;
+            font-weight: 700;
+            line-height: 28px;
+            color: var(--dark-text);
+            text-align: center;
+        }
+
+        .guarantees-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .guarantee-item {
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+        }
+
+        .guarantee-icon {
+            width: 28px;
+            height: 28px;
+            background-color: var(--secondary-green);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .guarantee-icon svg {
+            width: 14px;
+            height: 14px;
+            stroke: var(--white);
+            stroke-width: 3;
+            fill: none;
+        }
+
+        .guarantee-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .guarantee-text h4 {
+            font-size: 14px;
+            font-weight: 600;
+            line-height: 20px;
+            color: var(--dark-text);
+        }
+
+        .guarantee-text p {
+            font-size: 12px;
+            font-weight: 400;
+            line-height: 16px;
+            color: var(--secondary-text);
+        }
+
+        /* FINAL CTA BLOCK */
+        .final-cta-block {
+            background: linear-gradient(90deg, var(--cta-gradient-start) 0%, var(--cta-gradient-end) 100%);
+            border-radius: 16px;
+            padding: 24px;
+            margin-top: 16px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .final-cta-block h3 {
+            font-size: 20px;
+            font-weight: 700;
+            line-height: 28px;
+            color: var(--white);
+            margin-bottom: 8px;
+        }
+
+        .final-cta-block p {
+            font-size: 14px;
+            font-weight: 400;
+            line-height: 20px;
+            color: var(--soft-green-text);
+            margin-bottom: 16px;
+        }
+
+        .btn-white {
+            width: 100%;
+            height: 56px;
+            background-color: var(--white);
+            color: var(--primary-green);
+            border-radius: 999px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            font-weight: 700;
+            line-height: 24px;
+            text-decoration: none;
+            box-shadow: 0px 10px 15px -3px rgba(0, 0, 0, 0.1), 0px 4px 6px -4px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="app-container">
+
+        <!-- HEADER -->
+        <header class="app-header">
+            <a href="../index.html" class="header-back-btn">
+                <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="15 18 9 12 15 6"></polyline>
+                </svg>
+            </a>
+            <div class="header-title">Voltar</div>
+        </header>
+
+        <!-- HERO SLIDER -->
+        <div class="hero-gallery">
+            <div class="gallery-nav prev" id="prevBtn">
+                <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="15 18 9 12 15 6"></polyline>
+                </svg>
+            </div>
+
+            <div class="slider-track" id="sliderTrack">
+                <img src="./fotos/capa.png" alt="Cama Elástica 4,27M" class="slider-image">
+                <img src="./fotos/foto2.png" alt="Detalhe Cama Elástica 1" class="slider-image">
+                <img src="./fotos/foto3.png" alt="Detalhe Cama Elástica 2" class="slider-image">
+                <img src="./fotos/foto4.png" alt="Detalhe Cama Elástica 3" class="slider-image">
+            </div>
+
+            <div class="gallery-nav next" id="nextBtn">
+                <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="9 18 15 12 9 6"></polyline>
+                </svg>
+            </div>
+
+            <div class="gallery-bullets" id="bulletContainer">
+                <div class="bullet active" data-index="0"></div>
+                <div class="bullet" data-index="1"></div>
+                <div class="bullet" data-index="2"></div>
+                <div class="bullet" data-index="3"></div>
+            </div>
+        </div>
+
+        <!-- MAIN CONTENT -->
+        <div class="content-area">
+
+            <!-- PROMO BANNER -->
+            <div class="urgency-banner">
+                <div class="urgency-left">
+                    <div class="urgency-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                    </div>
+                    <div class="urgency-text">
+                        <h4>Oferta termina em breve!</h4>
+                        <p>Aproveite o desconto de hoje</p>
+                    </div>
+                </div>
+                <div class="promo-timer">
+                    <div class="timer-box">
+                        <span class="timer-value" id="promo-hours">02</span>
+                        <span class="timer-label">Horas</span>
+                    </div>
+                    <div class="timer-box">
+                        <span class="timer-value" id="promo-minutes">57</span>
+                        <span class="timer-label">Min</span>
+                    </div>
+                    <div class="timer-box">
+                        <span class="timer-value" id="promo-seconds">09</span>
+                        <span class="timer-label">Seg</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PRODUCT INFO & PRICE -->
+            <div class="product-header-info">
+                <h1 class="product-title">Cama Elástica 3,05M</h1>
+                <div class="product-subtitle">Modelo Tradicional</div>
+
+                <div class="product-rating">
+                    <div class="stars">
+                        <svg viewBox="0 0 24 24">
+                            <path
+                                d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z">
+                            </path>
+                        </svg>
+                        <svg viewBox="0 0 24 24">
+                            <path
+                                d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z">
+                            </path>
+                        </svg>
+                        <svg viewBox="0 0 24 24">
+                            <path
+                                d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z">
+                            </path>
+                        </svg>
+                        <svg viewBox="0 0 24 24">
+                            <path
+                                d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z">
+                            </path>
+                        </svg>
+                        <svg viewBox="0 0 24 24">
+                            <path
+                                d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z">
+                            </path>
+                        </svg>
+                    </div>
+                    <div class="rating-text">
+                        4.9/5.0 <span class="rating-separator">•</span>
+                        <span class="rating-sales">
+                            <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                                <circle cx="9" cy="7" r="4"></circle>
+                                <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                            </svg>
+                            +350 vendas
+                        </span>
+                    </div>
+                </div>
+
+                <div class="product-capacity">
+                    Até 8x crianças ou 4 adultos
+                </div>
+            </div>
+
+            <div class="price-section">
+                <span class="price-installment1">12x de</span>
+                <div class="price-installment-wrap">
+                    <span class="price-installment">R$ 201,69</span>
+                    <span class="price-old">De R$ 2.400,00</span>
+                </div>
+                <div class="price-cash">ou R$ 1897,00 à vista</div>
+                <div class="price-pix">(5% desconto no PIX: R$ 1802,15)</div>
+            </div>
+
+            <!-- SHIPPING INFO -->
+            <div class="freight-banners">
+                <div class="freight-card">
+                    <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="1" y="3" width="15" height="13"></rect>
+                        <polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon>
+                        <circle cx="5.5" cy="18.5" r="2.5"></circle>
+                        <circle cx="18.5" cy="18.5" r="2.5"></circle>
+                    </svg>
+                    <div class="freight-card-text">
+                        <h5>Frete Grátis</h5>
+                        <p>Todo Brasil</p>
+                    </div>
+                </div>
+                <div class="freight-card">
+                    <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="16.5" y1="9.4" x2="7.5" y2="4.21"></line>
+                        <path
+                            d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z">
+                        </path>
+                        <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+                        <line x1="12" y1="22.08" x2="12" y2="12"></line>
+                    </svg>
+                    <div class="freight-card-text">
+                        <h5>Entrega</h5>
+                        <p>7-15 dias</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- DESCRIPTION -->
+            <p class="product-description">
+                Cama elástica profissional de alto desempenho. Perfeita para grandes áreas e uso intensivo.
+            </p>
+
+            <!-- SPECS -->
+            <div class="technical-specs">
+                <h3 class="specs-title">Diferenciais técnicos</h3>
+                <div class="specs-list">
+                    <div class="spec-item">
+                        <div class="spec-icon-wrapper">
+                            <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                                <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                            </svg>
+                        </div>
+                        <div class="spec-text">
+                            <h4>8 Escadas Duplas de inox</h4>
+                            <p>Material resistente e durável</p>
+                        </div>
+                    </div>
+                    <div class="spec-item">
+                        <div class="spec-icon-wrapper">
+                            <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                                <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                            </svg>
+                        </div>
+                        <div class="spec-text">
+                            <h4>Molas reforçadas 180kg tolerância</h4>
+                            <p>Alta resistência</p>
+                        </div>
+                    </div>
+                    <div class="spec-item">
+                        <div class="spec-icon-wrapper">
+                            <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                                <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                            </svg>
+                        </div>
+                        <div class="spec-text">
+                            <h4>Rede de proteção anti-UV</h4>
+                            <p>Proteção contra raios solares</p>
+                        </div>
+                    </div>
+                    <!-- Other Specs -->
+                    <div class="spec-item">
+                        <div class="spec-icon-wrapper">
+                            <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                                <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                            </svg>
+                        </div>
+                        <div class="spec-text">
+                            <h4>Escalas vazias</h4>
+                            <p>Design moderno</p>
+                        </div>
+                    </div>
+                    <div class="spec-item">
+                        <div class="spec-icon-wrapper">
+                            <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                                <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                            </svg>
+                        </div>
+                        <div class="spec-text">
+                            <h4>1 ano de garantia de uso e 6 meses de troca, totais 1 ano e 6 meses</h4>
+                            <p>Garantia estendida</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CALL TO ACTIONS -->
+            <div class="cta-group">
+                <a href="https://www.brinkpark.com.br/checkout/cart?type=dynamic&skus=TRAD305M-01%3B1&action=clear"
+                    class="btn-primary">
+                    <img src="./fotos/comprar.svg" alt="comprar">
+                    Comprar Agora com Desconto
+                </a>
+                <a href="https://linkdowhats.app/EsQ" class="btn-outline">
+                    <img src="./fotos/chamada-video.svg" alt="chamada de video">
+                    Faça uma Chamada de Vídeo
+                </a>
+            </div>
+
+            <!-- TESTIMONIALS -->
+            <div class="testimonials">
+                <h3 class="section-title">O que nossos clientes dizem</h3>
+
+                <div class="testimonial-list">
+                    <div class="testimonial-card">
+                        <div class="testimonial-header">
+                            <img src="./fotos/cliente-1.jpeg" alt="Leandro Torres" class="testimonial-avatar"
+                                onerror="this.src='https://placehold.co/100x100/e2e8f0/64748b?text=Foto'">
+                            <div class="testimonial-info">
+                                <div class="testimonial-info-top">
+                                    <span class="testimonial-name">Leandro Torres</span>
+                                </div>
+                                <div class="stars-small">
+                                    <svg viewBox="0 0 24 24">
+                                        <path
+                                            d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z">
+                                        </path>
+                                    </svg>
+                                    <svg viewBox="0 0 24 24">
+                                        <path
+                                            d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z">
+                                        </path>
+                                    </svg>
+                                    <svg viewBox="0 0 24 24">
+                                        <path
+                                            d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z">
+                                        </path>
+                                    </svg>
+                                    <svg viewBox="0 0 24 24">
+                                        <path
+                                            d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z">
+                                        </path>
+                                    </svg>
+                                    <svg viewBox="0 0 24 24">
+                                        <path
+                                            d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z">
+                                        </path>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="testimonial-text">"Produto chegou sem atrasos, entregador muito simpático. cumpre oque
+                            promete. A criançada gostou muito."
+
+
+                        </p>
+                    </div>
+
+                    <div class="testimonial-card">
+                        <div class="testimonial-header">
+                            <img src="./fotos/cliente-2.jpeg" alt="Tailini Bill" class="testimonial-avatar"
+                                onerror="this.src='https://placehold.co/100x100/e2e8f0/64748b?text=Foto'">
+                            <div class="testimonial-info">
+                                <div class="testimonial-info-top">
+                                    <span class="testimonial-name">Rafael Almeida</span>
+                                </div>
+                                <div class="stars-small">
+                                    <svg viewBox="0 0 24 24">
+                                        <path
+                                            d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z">
+                                        </path>
+                                    </svg>
+                                    <svg viewBox="0 0 24 24">
+                                        <path
+                                            d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z">
+                                        </path>
+                                    </svg>
+                                    <svg viewBox="0 0 24 24">
+                                        <path
+                                            d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z">
+                                        </path>
+                                    </svg>
+                                    <svg viewBox="0 0 24 24">
+                                        <path
+                                            d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z">
+                                        </path>
+                                    </svg>
+                                    <svg viewBox="0 0 24 24">
+                                        <path
+                                            d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z">
+                                        </path>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="testimonial-text">"Produto entregue no prazo, excelente qualidade e atendimento.
+                            Recomendado pela criançada."
+
+                        </p>
+                    </div>
+
+                    <div class="testimonial-card">
+                        <div class="testimonial-header">
+                            <img src="./fotos/cliente-3.jpeg" alt="Nilton Cesar Balbino" class="testimonial-avatar"
+                                onerror="this.src='https://placehold.co/100x100/e2e8f0/64748b?text=Foto'">
+                            <div class="testimonial-info">
+                                <div class="testimonial-info-top">
+                                    <span class="testimonial-name">Nilton Cesar Balbino</span>
+                                </div>
+                                <div class="stars-small">
+                                    <svg viewBox="0 0 24 24">
+                                        <path
+                                            d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z">
+                                        </path>
+                                    </svg>
+                                    <svg viewBox="0 0 24 24">
+                                        <path
+                                            d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z">
+                                        </path>
+                                    </svg>
+                                    <svg viewBox="0 0 24 24">
+                                        <path
+                                            d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z">
+                                        </path>
+                                    </svg>
+                                    <svg viewBox="0 0 24 24">
+                                        <path
+                                            d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z">
+                                        </path>
+                                    </svg>
+                                    <svg viewBox="0 0 24 24">
+                                        <path
+                                            d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z">
+                                        </path>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="testimonial-text">"Produto bom , não veio com nada faltando, tem uma ótima
+                            durabilidade ."
+
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- REAL PHOTOS GALLERY -->
+            <div class="real-photos-section">
+                <h3 class="section-title">Fotos Reais dos Nossos Clientes</h3>
+                <div class="real-photos-slider">
+                    <div class="gallery-nav prev" id="realPrevBtn">
+                        <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="15 18 9 12 15 6"></polyline>
+                        </svg>
+                    </div>
+
+                    <div class="slider-track" id="realSliderTrack" style="height: 100%;">
+                        <img src="./fotos/real-1.jpeg" alt="Ambiente Cliente 1" class="slider-image"
+                            style="object-fit: cover;">
+                        <img src="./fotos/real-2.jpeg" alt="Ambiente Cliente 2" class="slider-image"
+                            style="object-fit: cover;">
+                        <img src="./fotos/real-3.jpeg" alt="Ambiente Cliente 3" class="slider-image"
+                            style="object-fit: cover;">
+                    </div>
+
+                    <div class="gallery-nav next" id="realNextBtn">
+                        <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="9 18 15 12 9 6"></polyline>
+                        </svg>
+                    </div>
+
+                    <div class="gallery-bullets" id="realBulletContainer">
+                        <div class="bullet real-bullet active" data-index="0"></div>
+                        <div class="bullet real-bullet" data-index="1"></div>
+                        <div class="bullet real-bullet" data-index="2"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- GUARANTEES -->
+            <div class="guarantees-card">
+                <h3 class="guarantees-title">Compra 100% Segura e Garantida</h3>
+                <div class="guarantees-list">
+                    <div class="guarantee-item">
+                        <div class="guarantee-icon">
+                            <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>
+                        </div>
+                        <div class="guarantee-text">
+                            <h4>Garantia de 12 meses</h4>
+                            <p>Troca grátis em caso de defeito de fabricação</p>
+                        </div>
+                    </div>
+                    <div class="guarantee-item">
+                        <div class="guarantee-icon">
+                            <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>
+                        </div>
+                        <div class="guarantee-text">
+                            <h4>7 dias para arrependimento</h4>
+                            <p>Devolução grátis se não gostar do produto</p>
+                        </div>
+                    </div>
+                    <div class="guarantee-item">
+                        <div class="guarantee-icon">
+                            <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>
+                        </div>
+                        <div class="guarantee-text">
+                            <h4>Pagamento 100% seguro</h4>
+                            <p>Seus dados protegidos e criptografados</p>
+                        </div>
+                    </div>
+                    <div class="guarantee-item">
+                        <div class="guarantee-icon">
+                            <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>
+                        </div>
+                        <div class="guarantee-text">
+                            <h4>Suporte especializado</h4>
+                            <p>Atendimento rápido via WhatsApp</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CTA FINAL -->
+            <div class="final-cta-block">
+                <h3>Não perca esta oferta!</h3>
+                <p>Estoque limitado - Apenas 7 unidades disponíveis</p>
+                <a href="https://www.brinkpark.com.br/checkout/cart?type=dynamic&skus=TRAD400M-01%3B1&action=clear"
+                    class="btn-white">Garantir Minha Cama Elástica Agora</a>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // -- FUNÇÃO GENÉRICA DE CARROSSEL --
+            function setupCarousel(trackId, prevBtnId, nextBtnId, bulletClass, autoSlideInterval) {
+                const track = document.getElementById(trackId);
+                const prevBtn = document.getElementById(prevBtnId);
+                const nextBtn = document.getElementById(nextBtnId);
+                const bullets = document.querySelectorAll(bulletClass);
+
+                if (!track) return;
+
+                let currentIndex = 0;
+                const totalSlides = bullets.length;
+
+                // Touch handling
+                let startX = 0;
+                let isDragging = false;
+                let currentTranslate = 0;
+
+                function updateSlider() {
+                    const offset = currentIndex * -100;
+                    track.style.transform = `translateX(${offset}%)`;
+
+                    bullets.forEach((bullet, index) => {
+                        if (index === currentIndex) {
+                            bullet.classList.add('active');
+                        } else {
+                            bullet.classList.remove('active');
+                        }
+                    });
+                }
+
+                function nextSlide() {
+                    if (currentIndex < totalSlides - 1) {
+                        currentIndex++;
+                    } else {
+                        currentIndex = 0;
+                    }
+                    updateSlider();
+                }
+
+                function prevSlide() {
+                    if (currentIndex > 0) {
+                        currentIndex--;
+                    } else {
+                        currentIndex = totalSlides - 1;
+                    }
+                    updateSlider();
+                }
+
+                if (nextBtn) nextBtn.addEventListener('click', nextSlide);
+                if (prevBtn) prevBtn.addEventListener('click', prevSlide);
+
+                bullets.forEach((bullet, index) => {
+                    bullet.addEventListener('click', () => {
+                        currentIndex = index;
+                        updateSlider();
+                    });
+                });
+
+                track.addEventListener('touchstart', (e) => {
+                    startX = e.touches[0].clientX;
+                    isDragging = true;
+                    track.style.transition = 'none';
+                });
+
+                track.addEventListener('touchmove', (e) => {
+                    if (isDragging) {
+                        const currentPosition = e.touches[0].clientX;
+                        const diff = currentPosition - startX;
+                        if ((currentIndex === 0 && diff > 0) || (currentIndex === totalSlides - 1 && diff < 0)) {
+                            currentTranslate = (currentIndex * -100) + (diff / window.innerWidth * 30);
+                        } else {
+                            currentTranslate = (currentIndex * -100) + (diff / window.innerWidth * 100);
+                        }
+                        track.style.transform = `translateX(${currentTranslate}%)`;
+                    }
+                });
+
+                track.addEventListener('touchend', (e) => {
+                    isDragging = false;
+                    track.style.transition = 'transform 0.3s ease-in-out';
+
+                    const endX = e.changedTouches[0].clientX;
+                    const threshold = window.innerWidth * 0.2;
+
+                    if (startX - endX > threshold && currentIndex < totalSlides - 1) {
+                        currentIndex++;
+                    } else if (endX - startX > threshold && currentIndex > 0) {
+                        currentIndex--;
+                    }
+
+                    updateSlider();
+                });
+
+                let autoSlide = setInterval(nextSlide, autoSlideInterval);
+
+                track.addEventListener('mouseenter', () => clearInterval(autoSlide));
+                track.addEventListener('mouseleave', () => autoSlide = setInterval(nextSlide, autoSlideInterval));
+                track.addEventListener('touchstart', () => clearInterval(autoSlide));
+                track.addEventListener('touchend', () => autoSlide = setInterval(nextSlide, autoSlideInterval));
+            }
+
+            // Inicializa ambos os carrosseis
+            setupCarousel('sliderTrack', 'prevBtn', 'nextBtn', '#bulletContainer .bullet', 5000);
+            setupCarousel('realSliderTrack', 'realPrevBtn', 'realNextBtn', '.real-bullet', 6000);
+
+            // Countdown Timer
+            function startPromoTimer() {
+                const hoursEl = document.getElementById('promo-hours');
+                const minutesEl = document.getElementById('promo-minutes');
+                const secondsEl = document.getElementById('promo-seconds');
+
+                if (!hoursEl || !minutesEl || !secondsEl) return;
+
+                const updateTimer = () => {
+                    const now = new Date();
+                    const midnight = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1, 0, 0, 0);
+
+                    const diff = midnight - now;
+
+                    if (diff <= 0) {
+                        hoursEl.textContent = '00';
+                        minutesEl.textContent = '00';
+                        secondsEl.textContent = '00';
+                        return;
+                    }
+
+                    const hours = Math.floor(diff / (1000 * 60 * 60));
+                    const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+                    const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+                    hoursEl.textContent = String(hours).padStart(2, '0');
+                    minutesEl.textContent = String(minutes).padStart(2, '0');
+                    secondsEl.textContent = String(seconds).padStart(2, '0');
+                };
+
+                updateTimer();
+                setInterval(updateTimer, 1000);
+            }
+            startPromoTimer();
+        });
+    </script>
+</body>
+
+</html>

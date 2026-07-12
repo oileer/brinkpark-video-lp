@@ -405,12 +405,6 @@
             choicesEl.classList.remove('visivel');
 
             var proximo = trocarVideo(no.video, function () { fimDoVideo(no); });
-            proximo.ontimeupdate = function () {
-                if (no.botoes && proximo.duration && proximo.duration - proximo.currentTime <= 3
-                    && !choicesEl.classList.contains('visivel')) {
-                    mostrarBotoes(no);
-                }
-            };
             precarregar(no);
             track('funil_etapa', { etapa: nome });
         }

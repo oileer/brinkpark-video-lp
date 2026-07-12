@@ -1,6 +1,8 @@
 # LP BrinkPark — Funil de Vídeo Interativo
 
-Documentação da sessão de 04/07/2026. Status: **aguardando aprovação de orçamento do cliente**.
+Documentação da sessão de 04/07/2026 (v1/v2/v3) + sessão de 12/07/2026 (v4).
+Status: v1-v3 aguardando aprovação de orçamento; **v4 construída na madrugada de
+12/07 com os 14 vídeos novos do cliente + fluxo.pdf enviados**, aguardando validação.
 
 ## O que é
 
@@ -73,3 +75,56 @@ Vídeo 09-transicao ("eu volto antes de fechar") está FORA do fluxo v1 — enca
 Eventos dataLayer: `funil_inicio`, `funil_etapa` (etapa), `funil_escolha` (regiao/finalidade/modelo),
 `funil_whatsapp_click` (tipo: pedido/duvida/outra_regiao), `funil_ver_detalhes`.
 GTM já instalado: GTM-NVFJB7JC (mesmo do site) → dá pra montar funil no GA4 e públicos no Meta Ads.
+
+---
+
+## V4 (12/07/2026) — fluxo novo + carrossel estilo Stories
+
+Cliente mandou 14 vídeos renumerados + `fluxo.pdf` (diagrama do funil) na madrugada.
+V4 reaproveita o MESMO engine da v3 (double buffering, GTM, WhatsApp CTA) e adiciona um
+**modo carrossel estilo Stories** pra etapa de "ver tamanhos e valores" (era pedido do
+cliente: "vídeo e descrição de cama modelo como se fosse um carrossel de storys, tipo
+tem no nosso site com os clientes").
+
+### Mapa do funil v4
+
+```
+01-inicio → 02-apresentacao (pergunta: região)
+  ├─ Norte → 04-norte-nao-atendemos → (CTA WhatsApp "atende mesmo assim?")
+  └─ Sul/Sudeste/Nordeste → 03-escolha-finalidade (pergunta: locação / casa / ver todas)
+        ├─ Locação        → 05-locacao        → carrossel NACIONAL (427,305,244,490)
+        ├─ Ter em casa     → 07-nacional-e-europa (pergunta: Nacional / Europa / as duas)
+        │     ├─ Nacional  → carrossel NACIONAL
+        │     ├─ Europa    → 06-europa → carrossel EUROPA (305,244)
+        │     └─ As duas   → carrossel TODOS (Nacional + Europa)
+        └─ Ver todas       → 07-nacional-e-europa → (mesmos 3 sub-ramos acima)
+
+Carrossel (stories, swipe lateral, barra de progresso no topo):
+  [tamanhos do grupo, maior→menor] → 14-finalizacao (trava, mostra botão WhatsApp)
+```
+
+### Sobre o carrossel
+
+Cada slide = 1 vídeo de modelo (`videos/08` a `13`) com card sobreposto (nome + preço
+ou "Consulte no WhatsApp" quando o preço não foi confirmado) e botão "Quero este" que já
+manda pro WhatsApp com o modelo preenchido. Tocar na lateral esquerda/direita da tela
+troca de slide (como Stories do Instagram); barra de progresso no topo mostra em qual
+slide está. Último slide é sempre o vídeo `14-finalizacao`, que ao acabar mostra o CTA
+final (não precisa clicar "Quero este" nele).
+
+### Pendências específicas da v4
+
+1. **Preços não confirmados**: só 2,44m Nacional (R$1.497), 4,27m Nacional (R$3.497) e
+   2,44m Europa (R$1.397) têm preço da LP de março. **3,05m Nacional, 4,90m Nacional e
+   3,05m Europa são modelos NOVOS sem preço** — a v4 mostra "Consulte o valor no
+   WhatsApp" pra esses em vez de inventar. Preencher em `PRECOS` no `v4/index.html`
+   assim que o cliente confirmar.
+2. Minha leitura do `fluxo.pdf` (desenho à mão) pode não bater 100% com a intenção do
+   cliente, principalmente: (a) se "locação" deveria também ter acesso à linha Europa;
+   (b) se o vídeo 05-locacao já explica tudo ou se falta um vídeo específico de
+   "diferenças da nacional" pra esse ramo (o diagrama menciona um "vídeo 4" separado
+   que não bate com nenhum arquivo entregue — pode ser que o cliente ainda vá gravar).
+   Validar o fluxo entero assistindo a v4 antes de aprovar.
+3. Vídeos originais (100-250MB cada) comprimidos para libx264 720p CRF 26 — ok pra
+   mobile, mas comparar qualidade com o cliente antes de publicar.
+4. Mesmas pendências da v1-v3: confirmar número do WhatsApp e revisar preços existentes.

@@ -76,6 +76,14 @@ Eventos dataLayer: `funil_inicio`, `funil_etapa` (etapa), `funil_escolha` (regia
 `funil_whatsapp_click` (tipo: pedido/duvida/outra_regiao), `funil_ver_detalhes`.
 GTM já instalado: GTM-NVFJB7JC (mesmo do site) → dá pra montar funil no GA4 e públicos no Meta Ads.
 
+### Tracking completo (pedido do cliente em áudios de 14/07 — v4 apenas, por enquanto)
+
+- `funil_video_progresso` (video, pct 10/25/50/75/90/100, etapa) → "o cliente viu até tal ponto do vídeo"
+- `funil_slide` (idx, modelo) → qual slide do carrossel foi visto
+- PostHog integrado no `v4/index.html`: preencher `POSTHOG_KEY` (Project API Key phc_..., criar
+  projeto grátis em posthog.com) no topo do script. Vazio = desligado; eventos continuam indo pro
+  GTM normalmente. Com a key ativa ganha funil visual + session replay + dashboards compartilháveis.
+
 ---
 
 ## V4 (12/07/2026) — fluxo novo + carrossel estilo Stories

@@ -284,17 +284,17 @@
 
         // ===== GRAFO DO FUNIL (parte linear) =====
         var FUNIL = {
-            inicio: { video: 'videos/01-inicio.mp4', etapa: 1, next: 'apresentacao' },
-            apresentacao: {
-                video: 'videos/02-apresentacao.mp4', etapa: 2,
+            inicio: {
+                video: 'videos/01-inicio.mp4', etapa: 1,
                 pergunta: 'Qual a sua região?',
                 botoes: [
-                    { texto: 'Sul', salva: { regiao: 'Sul' }, vai: 'escolhaFinalidade' },
-                    { texto: 'Sudeste', salva: { regiao: 'Sudeste' }, vai: 'escolhaFinalidade' },
-                    { texto: 'Nordeste', salva: { regiao: 'Nordeste' }, vai: 'escolhaFinalidade' },
+                    { texto: 'Sul', salva: { regiao: 'Sul' }, vai: 'apresentacao' },
+                    { texto: 'Sudeste', salva: { regiao: 'Sudeste' }, vai: 'apresentacao' },
+                    { texto: 'Nordeste', salva: { regiao: 'Nordeste' }, vai: 'apresentacao' },
                     { texto: 'Norte', salva: { regiao: 'Norte' }, vai: 'norte' }
                 ]
             },
+            apresentacao: { video: 'videos/02-apresentacao.mp4', etapa: 2, next: 'escolhaFinalidade' },
             norte: {
                 video: 'videos/04-norte-nao-atendemos.mp4', etapa: 2,
                 pergunta: 'Ainda assim, quer falar com a gente?',
@@ -405,12 +405,6 @@
             choicesEl.classList.remove('visivel');
 
             var proximo = trocarVideo(no.video, function () { fimDoVideo(no); });
-            proximo.ontimeupdate = function () {
-                if (no.botoes && proximo.duration && proximo.duration - proximo.currentTime <= 3
-                    && !choicesEl.classList.contains('visivel')) {
-                    mostrarBotoes(no);
-                }
-            };
             precarregar(no);
             track('funil_etapa', { etapa: nome });
         }

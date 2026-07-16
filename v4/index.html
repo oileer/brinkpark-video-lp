@@ -377,7 +377,7 @@
         };
 
         // ===== ESTADO =====
-        var estado = { regiao: null, finalidade: null, linha: null, modelo: null };
+        var estado = { regiao: null, finalidade: null, linha: null, modelo: null, modeloVisto: null };
         var noAtual = null;
         var vids = [document.getElementById('vidA'), document.getElementById('vidB')];
         var vidAtivo = 0;
@@ -544,6 +544,7 @@
                 var chave = storyState.lista[idx];
                 dadosModelo = MODELOS[chave];
                 video = dadosModelo.video;
+                estado.modeloVisto = dadosModelo.modelo; // último modelo visto no carrossel
             }
 
             var proximo = trocarVideo(video, function () {
@@ -625,12 +626,20 @@
         // ===== AÇÕES =====
         var acoes = {
             whatsPedido: function () {
-                track('funil_whatsapp_click', { tipo: 'pedido', modelo: estado.modelo, regiao: estado.regiao, finalidade: estado.finalidade });
-                var msg = 'Olá! Quero fazer o pedido da cama elástica' +
-                    (estado.modelo ? ' *' + estado.modelo + '*' : '') +
-                    (estado.finalidade ? ' para *' + estado.finalidade + '*' : '') +
-                    (estado.regiao ? ', região *' + estado.regiao + '*' : '') +
-                    '.\n\nMeus dados:\nNome: \nEndereço: \nTelefone: \nTelefone reserva: ';
+                track('funil_whatsapp_click', { tipo: 'pedido', modelo: estado.modelo, regiao: estado.regiao, finalidade: estado.finalidade, linha: estado.linha });
+                var escolhas = [];
+                if (estado.regiao) escolhas.push('▸ Região: *' + estado.regiao + '*');
+                if (estado.finalidade) escolhas.push('▸ Finalidade: *' + (estado.finalidade === 'Todas' ? 'Quis ver todas as opções' : estado.finalidade) + '*');
+                if (estado.linha) escolhas.push('▸ Linha: *' + (estado.linha === 'Ambas' ? 'Quis ver as duas linhas' : estado.linha) + '*');
+                if (estado.modelo) {
+                    var p = PRECOS[estado.modelo];
+                    escolhas.push('▸ Modelo: *' + estado.modelo + '*' + (p ? ' — ' + p.preco + ' ou ' + p.parcela + ' no cartão' : ''));
+                } else if (estado.modeloVisto) {
+                    escolhas.push('▸ Modelo: ainda em dúvida (último que vi foi o *' + estado.modeloVisto + '*)');
+                }
+                var msg = 'Olá! Acabei de montar meu pedido da cama elástica pela página. 🛒\n\n' +
+                    (escolhas.length ? '*Minhas escolhas:*\n' + escolhas.join('\n') + '\n\n' : '') +
+                    '*Meus dados:*\nNome: \nEndereço: \nTelefone: \nTelefone reserva: ';
                 window.location.href = 'https://wa.me/' + WHATS_NUMERO + '?text=' + encodeURIComponent(msg);
             },
             whatsDuvida: function () {

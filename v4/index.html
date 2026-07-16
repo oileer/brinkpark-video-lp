@@ -298,13 +298,16 @@
         var WHATS_NUMERO = '5549998282916'; // ATENÇÃO: confirmar com cliente (site oficial usa (49) 99972-6205)
         var HUB_MODELOS = '../modelos/';
 
-        // Preços conhecidos da LP de março (validar antes de ir pro ar). Modelos novos
-        // (3,05 Nacional / 4,90 Nacional / 3,05 Europa) ainda sem preço confirmado —
-        // mostram "Consulte no WhatsApp" em vez de inventar valor.
+        // Preços do site oficial (16/07/2026) — "Nacional" = Modelo Tradicional na loja.
+        // Valor no PIX + parcela em 12x sem juros no cartão.
+        // (2,44 Europa: bolsa de brinde é só na loja, valor igual nesta oferta.)
         var PRECOS = {
-            '2,44m Nacional': { preco: 'R$ 1.497', parcela: '12x R$ 159,05' },
-            '4,27m Nacional': { preco: 'R$ 3.497', parcela: '12x R$ 371,80' },
-            '2,44m Europa':   { preco: 'R$ 1.397', parcela: '12x R$ 148,53' }
+            '2,44m Nacional': { preco: 'R$ 1.496 no PIX', parcela: '12x R$ 131,23' },
+            '3,05m Nacional': { preco: 'R$ 1.897 no PIX', parcela: '12x R$ 166,40' },
+            '4,27m Nacional': { preco: 'R$ 2.898 no PIX', parcela: '12x R$ 254,21' },
+            '4,90m Nacional': { preco: 'R$ 3.497 no PIX', parcela: '12x R$ 306,75' },
+            '2,44m Europa':   { preco: 'R$ 1.397 no PIX', parcela: '12x R$ 122,54' },
+            '3,05m Europa':   { preco: 'R$ 1.795,50 no PIX', parcela: '12x R$ 157,50' }
         };
 
         // ===== GRAFO DO FUNIL (parte linear) =====
@@ -368,9 +371,9 @@
         var FINAL_SLIDE = { video: 'videos/14-finalizacao.mp4' };
 
         var CARROSSEIS = {
-            carrosselNacional: ['427nac', '305nac', '244nac', '490nac'], // maior pro menor, 4,90 por último (preço a confirmar)
+            carrosselNacional: ['490nac', '427nac', '305nac', '244nac'], // maior pro menor (preços confirmados 16/07)
             carrosselEuropa: ['305eur', '244eur'],
-            carrosselTodos: ['427nac', '305nac', '244nac', '490nac', '305eur', '244eur']
+            carrosselTodos: ['490nac', '427nac', '305nac', '244nac', '305eur', '244eur']
         };
 
         // ===== ESTADO =====

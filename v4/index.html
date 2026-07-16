@@ -235,12 +235,17 @@
         .story-card-btns .btn-escolha { padding: 12px 14px; font-size: 14px; }
 
         .swipe-hint {
-            position: absolute; left: 0; right: 0; top: 50%; transform: translateY(-50%);
-            z-index: 41; text-align: center; color: rgba(255,255,255,.55);
-            font-size: 12px; font-weight: 600; pointer-events: none;
-            animation: fadeout-hint 2.5s forwards;
+            position: absolute; left: 16px; right: 16px; top: 50%; transform: translateY(-50%);
+            z-index: 41; text-align: center; color: #fff;
+            font-size: 14px; font-weight: 700; pointer-events: none;
+            text-shadow: 0 1px 6px rgba(0,0,0,.8);
+            animation: fadeout-hint 7s forwards;
         }
-        @keyframes fadeout-hint { 0%, 60% { opacity: 1; } 100% { opacity: 0; } }
+        .swipe-hint span {
+            display: inline-block; padding: 10px 16px; border-radius: 999px;
+            background: rgba(0,0,0,.6);
+        }
+        @keyframes fadeout-hint { 0%, 80% { opacity: 1; } 100% { opacity: 0; } }
     </style>
 </head>
 
@@ -284,7 +289,7 @@
             <div class="stories-bars" id="storiesBars" style="display:none"></div>
             <div class="story-tap-zone prev" id="tapPrev" style="display:none"></div>
             <div class="story-tap-zone next" id="tapNext" style="display:none"></div>
-            <div class="swipe-hint" id="swipeHint" style="display:none">‹ toque nas laterais para navegar ›</div>
+            <div class="swipe-hint" id="swipeHint" style="display:none"><span>‹ Toque nas laterais da tela<br>para ver os outros tamanhos ›</span></div>
             <div class="story-card" id="storyCard" style="display:none"></div>
 
             <div class="choices" id="choices"></div>

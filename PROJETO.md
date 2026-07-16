@@ -45,7 +45,7 @@ Vídeo 09-transicao ("eu volto antes de fechar") está FORA do fluxo v1 — enca
 
 ## Configurações importantes (topo do script em cada v*/index.html)
 
-- `WHATS_NUMERO = '5549998282916'` ← ATENÇÃO: site oficial usa (49) 99972-6205. Confirmar com cliente.
+- `WHATS_NUMERO = '5549998282916'` — **CONFIRMADO pelo cliente em 16/07/2026** (site oficial usa outro: 49 99972-6205).
 - `WHATS_URL = 'https://linkdowhats.app/kxx'` (link da LP de março, p/ dúvidas)
 - Preços nos botões da v3 (vindos da LP de março, conferir): 2,44m R$1.397 / 3,05m R$1.797 /
   2,44m Nacional R$1.497 / 4,27m R$3.497. OBS: no site oficial atual os preços são outros
@@ -114,17 +114,23 @@ final (não precisa clicar "Quero este" nele).
 
 ### Pendências específicas da v4
 
-1. **Preços não confirmados**: só 2,44m Nacional (R$1.497), 4,27m Nacional (R$3.497) e
-   2,44m Europa (R$1.397) têm preço da LP de março. **3,05m Nacional, 4,90m Nacional e
-   3,05m Europa são modelos NOVOS sem preço** — a v4 mostra "Consulte o valor no
-   WhatsApp" pra esses em vez de inventar. Preencher em `PRECOS` no `v4/index.html`
-   assim que o cliente confirmar.
-2. Minha leitura do `fluxo.pdf` (desenho à mão) pode não bater 100% com a intenção do
-   cliente, principalmente: (a) se "locação" deveria também ter acesso à linha Europa;
-   (b) se o vídeo 05-locacao já explica tudo ou se falta um vídeo específico de
-   "diferenças da nacional" pra esse ramo (o diagrama menciona um "vídeo 4" separado
-   que não bate com nenhum arquivo entregue — pode ser que o cliente ainda vá gravar).
-   Validar o fluxo entero assistindo a v4 antes de aprovar.
-3. Vídeos originais (100-250MB cada) comprimidos para libx264 720p CRF 26 — ok pra
-   mobile, mas comparar qualidade com o cliente antes de publicar.
-4. Mesmas pendências da v1-v3: confirmar número do WhatsApp e revisar preços existentes.
+**Resolvidas em 16/07/2026** (cliente mandou a listagem do site + confirmações via WhatsApp):
+- Preços: todos os 6 modelos preenchidos em `PRECOS` com valores oficiais do site
+  (PIX + 12x cartão). "Nacional" na LP = "Modelo Tradicional" na loja. Corrigido o
+  4,27m Nacional (era R$3.497 por engano — esse é o preço do 4,90m; correto: R$2.898).
+  2,44m Europa: bolsa de brinde é só na loja, valor igual.
+- Número do WhatsApp do CTA confirmado: 49 99828-2916.
+- Carrossel Nacional reordenado maior→menor (4,90 → 4,27 → 3,05 → 2,44).
+
+**Novidades de 16/07 (pedidos do Deiwidy via WhatsApp):**
+- Botão "Pular ›" no superior esquerdo em todos os vídeos (dispara `funil_pular` no GTM).
+- Toque na tela pula o vídeo tipo Stories também nos vídeos do funil.
+- Pill "Ver todos os modelos" removido do início (aparece só da etapa 3 em diante, some no carrossel).
+- Banner com cronômetro regressivo sábado→sábado (reinicia automaticamente ao chegar sábado).
+- Raiz do site redireciona pra /v4/ (preservando UTMs); seletora antiga movida pra /versoes/.
+
+**Ainda em aberto:**
+1. Validação do fluxo vs fluxo.pdf: (a) se "locação" deveria ter acesso à linha Europa;
+   (b) "vídeo 4" do diagrama que não bate com nenhum arquivo entregue.
+2. Vídeos comprimidos (libx264 720p CRF 26) — comparar qualidade com o cliente.
+3. Dashboard de analytics aprovado (R$2.000) — ver DASHBOARD.md.

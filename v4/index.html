@@ -287,6 +287,8 @@
         // ===== CONFIG =====
         var WHATS_URL = 'https://linkdowhats.app/kxx'; // link geral (dúvidas)
         var WHATS_NUMERO = '5549998282916'; // confirmado com cliente 16/07/2026 (site oficial usa outro: 49 99972-6205)
+        var SITE_URL = 'https://www.brinkpark.com.br/';
+        var ML_URL = 'https://www.mercadolivre.com.br/pagina/bb20250204144108#from=share_eshop';
         var HUB_MODELOS = '../modelos/';
 
         // Preços do site oficial (16/07/2026) — "Nacional" = Modelo Tradicional na loja.
@@ -601,6 +603,18 @@
             btnPedido.onclick = function () { acoes.whatsPedido(); };
             choicesEl.appendChild(btnPedido);
 
+            var btnSite = document.createElement('button');
+            btnSite.className = 'btn-escolha';
+            btnSite.textContent = 'Comprar no site oficial';
+            btnSite.onclick = function () { acoes.irSite(); };
+            choicesEl.appendChild(btnSite);
+
+            var btnML = document.createElement('button');
+            btnML.className = 'btn-escolha';
+            btnML.textContent = 'Comprar no Mercado Livre';
+            btnML.onclick = function () { acoes.irMercadoLivre(); };
+            choicesEl.appendChild(btnML);
+
             var btnModelos = document.createElement('button');
             btnModelos.className = 'btn-escolha';
             btnModelos.textContent = 'Ver todos os modelos e fotos';
@@ -638,6 +652,14 @@
                 track('funil_whatsapp_click', { tipo: 'outra_regiao' });
                 var msg = 'Olá! Tenho interesse na cama elástica, mas sou do Norte. Vocês atendem minha cidade?';
                 window.location.href = 'https://wa.me/' + WHATS_NUMERO + '?text=' + encodeURIComponent(msg);
+            },
+            irSite: function () {
+                track('funil_site_click', { modelo: estado.modelo, regiao: estado.regiao, linha: estado.linha });
+                window.location.href = SITE_URL;
+            },
+            irMercadoLivre: function () {
+                track('funil_ml_click', { modelo: estado.modelo, regiao: estado.regiao, linha: estado.linha });
+                window.location.href = ML_URL;
             },
             verDetalhes: function () {
                 track('funil_ver_detalhes', { modelo: estado.modelo });

@@ -17,6 +17,7 @@
             --border: #E8EAED;
             --surface: #F6F7F9;
             --red: #D51F26;
+            --yellow: #FFC609;
         }
 
         * {
@@ -24,17 +25,44 @@
             font-family: 'Inter', Arial, sans-serif; -webkit-font-smoothing: antialiased;
         }
 
+        html, body { max-width: 100%; overflow-x: hidden; }
         body { background: var(--surface); color: var(--text-dark); padding: 0 0 48px; }
+        img { max-width: 100%; display: block; }
 
-        .head {
-            background: var(--ink); color: #fff; padding: 34px 22px 30px; text-align: center;
+        /* TOPBAR COM MARCA */
+        .topbar {
+            display: flex; align-items: center;
+            padding: 12px 18px; background: #fff; border-bottom: 1px solid var(--border);
         }
-        .head .brand {
-            font-size: 11px; font-weight: 800; letter-spacing: 2.6px; text-transform: uppercase;
-            color: rgba(255,255,255,.6); margin-bottom: 12px;
+        .topbar img { height: 40px; width: auto; }
+
+        /* HERO */
+        .head {
+            background: linear-gradient(155deg, #D51F26 0%, #9E1015 100%);
+            color: #fff; padding: 34px 22px 32px; text-align: center;
+            position: relative; overflow: hidden;
+        }
+        .head::before {
+            content: ''; position: absolute; width: 320px; height: 320px; border-radius: 50%;
+            background: radial-gradient(circle, rgba(255,198,9,.38), transparent 66%);
+            top: -160px; right: -110px;
+        }
+        .head::after {
+            content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 5px;
+            background: linear-gradient(90deg, var(--yellow) 0%, var(--yellow) 34%, rgba(255,255,255,.25) 34%, rgba(255,255,255,.25) 100%);
+        }
+        .head-inner { position: relative; }
+        .head .kicker {
+            display: inline-block; font-size: 10.5px; font-weight: 800; letter-spacing: 1.4px;
+            text-transform: uppercase; color: #2A0405; background: var(--yellow);
+            padding: 5px 12px; border-radius: 999px; margin-bottom: 14px;
         }
         .head h1 { font-size: 25px; font-weight: 900; letter-spacing: -.5px; line-height: 1.2; }
-        .head p { font-size: 13.5px; color: rgba(255,255,255,.7); margin-top: 10px; line-height: 1.55; max-width: 30em; margin-left: auto; margin-right: auto; }
+        .head h1 em { font-style: normal; color: var(--yellow); }
+        .head p {
+            font-size: 13.5px; color: rgba(255,255,255,.85); margin-top: 10px; line-height: 1.55;
+            max-width: 30em; margin-left: auto; margin-right: auto;
+        }
 
         .wrap { max-width: 720px; margin: 0 auto; padding: 22px 16px 0; display: flex; flex-direction: column; gap: 14px; }
 
@@ -64,10 +92,16 @@
 </head>
 
 <body>
+    <header class="topbar">
+        <img src="./assets/logo-brinkpark.svg" alt="Brinkpark">
+    </header>
+
     <div class="head">
-        <div class="brand">Brinkpark</div>
-        <h1>Catálogo: Camas Elásticas + Infláveis</h1>
-        <p>Três propostas de layout para a nova LP. Abra cada uma no celular e me diga qual caminho seguir.</p>
+        <div class="head-inner">
+            <span class="kicker">Novidade 2026</span>
+            <h1>Camas Elásticas<br>e agora <em>Infláveis</em></h1>
+            <p>Três propostas de layout para a nova página. Abra cada uma no celular e me diga qual caminho seguir.</p>
+        </div>
     </div>
 
     <div class="wrap">

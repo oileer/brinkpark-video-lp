@@ -49,14 +49,8 @@
             display: flex; align-items: center; justify-content: space-between; gap: 12px;
             padding: 12px 18px; background: var(--white); border-bottom: 1px solid var(--border);
         }
-        .topbar .brand { display: flex; align-items: center; gap: 10px; min-width: 0; }
-        .topbar .brand img { height: 34px; width: auto; flex-shrink: 0; }
-        .topbar .brand .brand-txt { line-height: 1.15; min-width: 0; }
-        .topbar .brand strong { display: block; font-size: 14px; font-weight: 900; letter-spacing: -.2px; }
-        .topbar .brand span {
-            font-size: 9.5px; font-weight: 700; letter-spacing: 1.1px;
-            text-transform: uppercase; color: var(--text-muted);
-        }
+        .topbar .brand { display: flex; align-items: center; min-width: 0; }
+        .topbar .brand img { height: 40px; width: auto; flex-shrink: 0; }
         .topbar .top-whats {
             display: flex; align-items: center; gap: 6px; background: #E9FBF0; border: 1px solid #BFEBD1;
             color: #067A38; font-size: 11.5px; font-weight: 700; padding: 8px 12px; border-radius: 999px;
@@ -241,10 +235,6 @@
         <header class="topbar">
             <div class="brand">
                 <img src="../assets/logo-brinkpark.svg" alt="Brinkpark">
-                <div class="brand-txt">
-                    <strong>Brinkpark</strong>
-                    <span>Catálogo oficial</span>
-                </div>
             </div>
             <button class="top-whats" onclick="abrirWhats('geral')">
                 <svg viewBox="0 0 32 32" fill="none"><path fill-rule="evenodd" clip-rule="evenodd" d="M26.179 6.047a13.815 13.815 0 0 0-9.836-4.078C8.678 1.97 2.44 8.207 2.437 15.874c0 2.45.64 4.842 1.857 6.951L2.32 30.031l7.371-1.934a13.893 13.893 0 0 0 6.645 1.692h.006c7.663 0 13.902-6.238 13.905-13.904a13.821 13.821 0 0 0-4.069-9.838zm-9.836 21.394h-.005a11.54 11.54 0 0 1-5.882-1.61l-.422-.251-4.375 1.147 1.168-4.265-.275-.437a11.53 11.53 0 0 1-1.767-6.15C4.788 9.501 9.972 4.317 16.347 4.317a11.479 11.479 0 0 1 8.171 3.39 11.488 11.488 0 0 1 3.382 8.176c-.002 6.372-5.187 11.557-11.557 11.557z" fill="#067A38"/></svg>

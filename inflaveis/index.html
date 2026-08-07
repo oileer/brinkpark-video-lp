@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Versões - Catálogo Camas Elásticas e Infláveis</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --ink: #0F1419;
+            --text-dark: #101828;
+            --text-gray: #5A6472;
+            --text-muted: #9AA3AF;
+            --border: #E8EAED;
+            --surface: #F6F7F9;
+            --red: #D51F26;
+        }
+
+        * {
+            margin: 0; padding: 0; box-sizing: border-box;
+            font-family: 'Inter', Arial, sans-serif; -webkit-font-smoothing: antialiased;
+        }
+
+        body { background: var(--surface); color: var(--text-dark); padding: 0 0 48px; }
+
+        .head {
+            background: var(--ink); color: #fff; padding: 34px 22px 30px; text-align: center;
+        }
+        .head .brand {
+            font-size: 11px; font-weight: 800; letter-spacing: 2.6px; text-transform: uppercase;
+            color: rgba(255,255,255,.6); margin-bottom: 12px;
+        }
+        .head h1 { font-size: 25px; font-weight: 900; letter-spacing: -.5px; line-height: 1.2; }
+        .head p { font-size: 13.5px; color: rgba(255,255,255,.7); margin-top: 10px; line-height: 1.55; max-width: 30em; margin-left: auto; margin-right: auto; }
+
+        .wrap { max-width: 720px; margin: 0 auto; padding: 22px 16px 0; display: flex; flex-direction: column; gap: 14px; }
+
+        .card {
+            background: #fff; border: 1px solid var(--border); border-radius: 18px; padding: 20px;
+            text-decoration: none; color: inherit; display: block;
+            box-shadow: 0 2px 10px rgba(16,24,40,.04);
+        }
+        .card .tag {
+            display: inline-block; font-size: 10.5px; font-weight: 800; letter-spacing: 1.2px;
+            text-transform: uppercase; color: var(--red); margin-bottom: 8px;
+        }
+        .card h2 { font-size: 18px; font-weight: 800; }
+        .card .lead { font-size: 13.5px; color: var(--text-gray); margin-top: 7px; line-height: 1.55; }
+        .card ul { list-style: none; margin-top: 12px; display: flex; flex-wrap: wrap; gap: 6px; }
+        .card li {
+            font-size: 11.5px; font-weight: 600; color: var(--text-gray);
+            background: var(--surface); border: 1px solid var(--border); padding: 5px 10px; border-radius: 8px;
+        }
+        .card .go {
+            margin-top: 16px; display: inline-flex; align-items: center; gap: 7px;
+            font-size: 13.5px; font-weight: 700; color: var(--text-dark);
+        }
+        .card .go svg { width: 15px; height: 15px; }
+
+    </style>
+</head>
+
+<body>
+    <div class="head">
+        <div class="brand">Brinkpark</div>
+        <h1>Catálogo: Camas Elásticas + Infláveis</h1>
+        <p>Três propostas de layout para a nova LP. Abra cada uma no celular e me diga qual caminho seguir.</p>
+    </div>
+
+    <div class="wrap">
+        <a class="card" href="./v1/">
+            <span class="tag">Versão 1</span>
+            <h2>Catálogo clássico</h2>
+            <p class="lead">Mesma pegada da página <strong>/modelos</strong> que já está no ar: lista vertical
+                com miniatura, preço à direita e seta. Camas elásticas em cima, infláveis logo abaixo.</p>
+            <ul>
+                <li>Familiar para quem já conhece o site</li>
+                <li>Comparação rápida de preço</li>
+                <li>Mais denso, menos foto</li>
+            </ul>
+            <span class="go">Abrir versão 1
+                <svg viewBox="0 0 24 24" fill="none"><path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+        </a>
+
+        <a class="card" href="./v2/">
+            <span class="tag">Versão 2</span>
+            <h2>Vitrine com filtros</h2>
+            <p class="lead">Grade de dois por linha com foto grande, filtros no topo (Todos, Camas, Infláveis,
+                Europa, Tradicional) e ficha de detalhe que abre por cima ao tocar no produto.</p>
+            <ul>
+                <li>Foto valoriza o produto</li>
+                <li>Filtro separa as linhas</li>
+                <li>Detalhe sem sair da página</li>
+            </ul>
+            <span class="go">Abrir versão 2
+                <svg viewBox="0 0 24 24" fill="none"><path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+        </a>
+
+        <a class="card" href="./v3/">
+            <span class="tag">Versão 3</span>
+            <h2>Editorial com combo</h2>
+            <p class="lead">Capa com foto grande, carrosséis horizontais por linha e um bloco dedicado ao
+                <strong>combo cama elástica + inflável</strong> — pensado para quem compra para locação.</p>
+            <ul>
+                <li>Visual mais premium</li>
+                <li>Empurra o combo (ticket maior)</li>
+                <li>Carrossel estilo stories</li>
+            </ul>
+            <span class="go">Abrir versão 3
+                <svg viewBox="0 0 24 24" fill="none"><path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+        </a>
+    </div>
+
+</body>
+
+</html>

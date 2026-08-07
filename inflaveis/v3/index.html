@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Camas Elásticas e Infláveis - Brinkpark</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <!-- Google Tag Manager -->
+    <script>(function (w, d, s, l, i) {
+            w[l] = w[l] || []; w[l].push({
+                'gtm.start':
+                    new Date().getTime(), event: 'gtm.js'
+            }); var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+                    'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-NVFJB7JC');</script>
+    <!-- End Google Tag Manager -->
+    <style>
+        :root {
+            --white: #ffffff;
+            --ink: #0F1419;
+            --text-dark: #101828;
+            --text-gray: #5A6472;
+            --text-muted: #9AA3AF;
+            --green: #00A63E;
+            --green-dark: #007F2F;
+            --red: #D51F26;
+            --yellow: #FFC609;
+            --surface: #F6F7F9;
+            --border: #E8EAED;
+        }
+
+        * {
+            margin: 0; padding: 0; box-sizing: border-box;
+            font-family: 'Inter', Arial, sans-serif; -webkit-font-smoothing: antialiased;
+        }
+
+        html, body { max-width: 100%; overflow-x: hidden; }
+        body { background: var(--white); color: var(--text-dark); }
+        img { max-width: 100%; display: block; }
+
+        .app { max-width: 480px; margin: 0 auto; padding-bottom: 104px; }
+
+        /* TOPBAR COM MARCA */
+        .topbar {
+            display: flex; align-items: center; justify-content: space-between; gap: 12px;
+            padding: 12px 18px; background: var(--white); border-bottom: 1px solid var(--border);
+        }
+        .topbar .brand { display: flex; align-items: center; gap: 10px; min-width: 0; }
+        .topbar .brand img { height: 34px; width: auto; flex-shrink: 0; }
+        .topbar .brand .brand-txt { line-height: 1.15; min-width: 0; }
+        .topbar .brand strong { display: block; font-size: 14px; font-weight: 900; letter-spacing: -.2px; }
+        .topbar .brand span {
+            font-size: 9.5px; font-weight: 700; letter-spacing: 1.1px;
+            text-transform: uppercase; color: var(--text-muted);
+        }
+        .topbar .top-whats {
+            display: flex; align-items: center; gap: 6px; background: #E9FBF0; border: 1px solid #BFEBD1;
+            color: #067A38; font-size: 11.5px; font-weight: 700; padding: 8px 12px; border-radius: 999px;
+            cursor: pointer; flex-shrink: 0;
+        }
+        .topbar .top-whats svg { width: 14px; height: 14px; }
+
+        /* HERO EDITORIAL */
+        .hero { position: relative; overflow: hidden; }
+        .hero-photo {
+            width: 100%; aspect-ratio: 4/5; max-height: 62vh; object-fit: cover;
+        }
+        .hero-fade {
+            position: absolute; inset: 0;
+            background: linear-gradient(180deg, rgba(15,20,25,.55) 0%, rgba(15,20,25,.1) 30%, rgba(15,20,25,.94) 82%);
+        }
+        .hero-content {
+            position: absolute; inset: 0; padding: 20px 20px 22px;
+            display: flex; flex-direction: column; justify-content: flex-end; color: #fff;
+        }
+        .hero-tag {
+            position: absolute; top: 18px; left: 20px;
+            display: inline-flex; align-items: center; gap: 7px;
+            font-size: 10px; font-weight: 800; letter-spacing: 1.3px; text-transform: uppercase;
+            color: #2A0405; background: var(--yellow); padding: 5px 11px; border-radius: 999px;
+        }
+        .hero-bottom h1 { font-size: 30px; font-weight: 900; line-height: 1.1; letter-spacing: -.8px; }
+        .hero-bottom h1 em { font-style: normal; color: var(--yellow); }
+        .hero-bottom p {
+            font-size: 13.5px; color: rgba(255,255,255,.8); margin-top: 11px;
+            line-height: 1.5; max-width: 22em;
+        }
+        .hero-actions {
+            display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; width: 100%;
+        }
+        .btn-primary, .btn-ghost {
+            flex: 1 1 140px; min-width: 0; border-radius: 12px; cursor: pointer;
+            font-size: 13.5px; font-weight: 700; padding: 13px 10px; text-align: center;
+        }
+        .btn-primary {
+            background: linear-gradient(180deg, var(--green), var(--green-dark));
+            color: #fff; border: none;
+        }
+        .btn-ghost {
+            background: rgba(255,255,255,.14); border: 1px solid rgba(255,255,255,.34); color: #fff;
+        }
+
+        @media (max-width: 340px) {
+            .hero-bottom h1 { font-size: 26px; }
+            .btn-primary, .btn-ghost { flex: 1 1 100%; }
+        }
+
+        /* FAIXA DE PROVA */
+        .strip {
+            background: var(--ink); color: #fff; display: flex; justify-content: space-around;
+            padding: 16px 12px; text-align: center;
+        }
+        .strip div strong { display: block; font-size: 16px; font-weight: 800; }
+        .strip div span { font-size: 10.5px; color: rgba(255,255,255,.55); letter-spacing: .3px; }
+
+        /* SECOES */
+        .sec-head { padding: 32px 20px 14px; }
+        .sec-head .kicker {
+            font-size: 10.5px; font-weight: 800; letter-spacing: 1.6px; text-transform: uppercase;
+            color: var(--red); margin-bottom: 7px;
+        }
+        .sec-head .kicker.novo { color: #0F6FC5; }
+        .sec-head h2 { font-size: 23px; font-weight: 900; letter-spacing: -.4px; line-height: 1.2; }
+        .sec-head p { font-size: 13.5px; color: var(--text-gray); margin-top: 6px; line-height: 1.55; }
+
+        /* CARROSSEL */
+        .rail {
+            display: flex; gap: 12px; overflow-x: auto; padding: 4px 20px 20px;
+            scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch;
+        }
+        .rail::-webkit-scrollbar { display: none; }
+
+        .slide {
+            flex: 0 0 244px; scroll-snap-align: start; border: 1px solid var(--border);
+            border-radius: 18px; overflow: hidden; background: var(--white);
+            display: flex; flex-direction: column; cursor: pointer;
+            box-shadow: 0 2px 10px rgba(16,24,40,.05);
+        }
+        .slide-photo { position: relative; background: var(--surface); }
+        .slide-photo img { width: 100%; aspect-ratio: 1/1; object-fit: cover; }
+        .slide-flag {
+            position: absolute; top: 10px; left: 10px; font-size: 10.5px; font-weight: 800;
+            color: #fff; background: var(--red); padding: 5px 10px; border-radius: 999px;
+            box-shadow: 0 2px 8px rgba(0,0,0,.2);
+        }
+        .slide-flag.novo { background: #0F6FC5; }
+        .slide-body { padding: 14px; display: flex; flex-direction: column; gap: 5px; flex: 1; }
+        .slide-body .kicker { font-size: 10px; font-weight: 700; letter-spacing: .6px; text-transform: uppercase; color: var(--text-muted); }
+        .slide-body h3 { font-size: 15.5px; font-weight: 800; line-height: 1.2; }
+        .slide-body .spec { font-size: 11.5px; color: var(--text-gray); line-height: 1.45; }
+        .slide-price { margin-top: auto; padding-top: 10px; border-top: 1px solid var(--border); }
+        .slide-price .from { font-size: 10.5px; color: var(--text-muted); text-decoration: line-through; }
+        .slide-price .now { font-size: 18px; font-weight: 900; color: var(--green); line-height: 1.15; }
+        .slide-price .inst { font-size: 11px; color: var(--text-gray); }
+        .slide-price .consult { font-size: 14px; font-weight: 800; }
+        .slide-price .consult span { display: block; font-size: 11px; font-weight: 500; color: var(--text-gray); }
+        .slide-btn {
+            margin-top: 11px; width: 100%; border: 1px solid var(--green); background: #fff; color: var(--green-dark);
+            border-radius: 10px; font-size: 12.5px; font-weight: 700; padding: 10px; cursor: pointer;
+        }
+
+        .rail-hint { padding: 0 20px; font-size: 11.5px; color: var(--text-muted); margin-top: -12px; margin-bottom: 4px; }
+
+        /* COMBO */
+        .combo {
+            margin: 8px 20px 0; border-radius: 20px; overflow: hidden;
+            background: linear-gradient(150deg, #12161C, #262C36); color: #fff; padding: 26px 22px;
+            position: relative;
+        }
+        .combo::after {
+            content: ''; position: absolute; width: 210px; height: 210px; border-radius: 50%;
+            background: radial-gradient(circle, rgba(255,198,9,.28), transparent 70%);
+            right: -80px; bottom: -90px;
+        }
+        .combo-inner { position: relative; }
+        .combo .kicker {
+            font-size: 10.5px; font-weight: 800; letter-spacing: 1.6px; text-transform: uppercase;
+            color: var(--yellow); margin-bottom: 8px;
+        }
+        .combo h3 { font-size: 21px; font-weight: 900; line-height: 1.22; letter-spacing: -.3px; }
+        .combo p { font-size: 13.5px; color: rgba(255,255,255,.72); margin-top: 10px; line-height: 1.6; }
+        .combo ul { list-style: none; margin: 16px 0 20px; display: flex; flex-direction: column; gap: 9px; }
+        .combo li { display: flex; gap: 10px; align-items: flex-start; font-size: 13px; color: rgba(255,255,255,.9); }
+        .combo li svg { width: 17px; height: 17px; flex-shrink: 0; margin-top: 1px; }
+        .combo button {
+            width: 100%; background: var(--yellow); color: #12161C; border: none; border-radius: 12px;
+            font-size: 14px; font-weight: 800; padding: 14px; cursor: pointer;
+        }
+
+        /* GARANTIAS */
+        .guarantees { padding: 28px 20px 8px; display: flex; flex-direction: column; gap: 14px; }
+        .g-item { display: flex; gap: 14px; align-items: flex-start; }
+        .g-icon {
+            width: 38px; height: 38px; border-radius: 11px; background: #ECFDF3;
+            display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+        }
+        .g-icon svg { width: 20px; height: 20px; }
+        .g-text h4 { font-size: 14px; font-weight: 700; }
+        .g-text p { font-size: 12.5px; color: var(--text-gray); margin-top: 2px; line-height: 1.45; }
+
+        /* CTA */
+        .cta-bar {
+            position: fixed; bottom: 0; left: 0; right: 0; z-index: 40; background: rgba(255,255,255,.96);
+            backdrop-filter: blur(8px); border-top: 1px solid var(--border);
+            padding: 12px 20px calc(12px + env(safe-area-inset-bottom));
+        }
+        .cta-bar .inner { max-width: 480px; margin: 0 auto; display: flex; align-items: center; gap: 12px; }
+        .cta-bar .txt { flex: 1 1 auto; min-width: 0; }
+        .cta-bar .txt strong {
+            display: block; font-size: 13px;
+            white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+        }
+        .cta-bar .txt span {
+            display: block; font-size: 11px; color: var(--text-gray);
+            white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+        }
+        .btn-whats {
+            background: #25D366; color: #fff; border: none; border-radius: 999px; cursor: pointer;
+            font-size: 13.5px; font-weight: 700; padding: 13px 20px; flex: 0 0 auto;
+            display: flex; align-items: center; gap: 8px; white-space: nowrap;
+        }
+
+        @media (max-width: 340px) {
+            .cta-bar .txt span { display: none; }
+            .btn-whats { padding: 13px 16px; }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NVFJB7JC" height="0" width="0"
+            style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+    <div class="app">
+        <header class="topbar">
+            <div class="brand">
+                <img src="../assets/logo-brinkpark.svg" alt="Brinkpark">
+                <div class="brand-txt">
+                    <strong>Brinkpark</strong>
+                    <span>Catálogo oficial</span>
+                </div>
+            </div>
+            <button class="top-whats" onclick="abrirWhats('geral')">
+                <svg viewBox="0 0 32 32" fill="none"><path fill-rule="evenodd" clip-rule="evenodd" d="M26.179 6.047a13.815 13.815 0 0 0-9.836-4.078C8.678 1.97 2.44 8.207 2.437 15.874c0 2.45.64 4.842 1.857 6.951L2.32 30.031l7.371-1.934a13.893 13.893 0 0 0 6.645 1.692h.006c7.663 0 13.902-6.238 13.905-13.904a13.821 13.821 0 0 0-4.069-9.838zm-9.836 21.394h-.005a11.54 11.54 0 0 1-5.882-1.61l-.422-.251-4.375 1.147 1.168-4.265-.275-.437a11.53 11.53 0 0 1-1.767-6.15C4.788 9.501 9.972 4.317 16.347 4.317a11.479 11.479 0 0 1 8.171 3.39 11.488 11.488 0 0 1 3.382 8.176c-.002 6.372-5.187 11.557-11.557 11.557z" fill="#067A38"/></svg>
+                Falar
+            </button>
+        </header>
+
+        <section class="hero">
+            <img class="hero-photo" src="../assets/camas/427-nacional.png" alt="Cama elástica Brinkpark">
+            <div class="hero-fade"></div>
+            <div class="hero-content">
+                <span class="hero-tag">Novidade 2026</span>
+                <div class="hero-bottom">
+                    <h1>A festa inteira<br>em um <em>catálogo só</em></h1>
+                    <p>Camas elásticas para ter em casa ou para locação — e agora também a linha completa de infláveis.</p>
+                    <div class="hero-actions">
+                        <button class="btn-primary" onclick="irPara('camas')">Ver camas elásticas</button>
+                        <button class="btn-ghost" onclick="irPara('inflaveis')">Ver infláveis</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="strip">
+            <div><strong>+2.500</strong><span>FAMÍLIAS</span></div>
+            <div><strong>4.9/5</strong><span>AVALIAÇÃO</span></div>
+            <div><strong>12 meses</strong><span>GARANTIA</span></div>
+        </div>
+
+        <div class="sec-head" id="camas">
+            <div class="kicker">Linha consolidada</div>
+            <h2>Camas Elásticas</h2>
+            <p>Modelo Europa para ter em casa, Modelo Tradicional reforçado para quem vive de locação.</p>
+        </div>
+        <div class="rail-hint">Arraste para o lado para ver todos os tamanhos</div>
+        <div class="rail" id="railCamas"></div>
+
+        <div class="sec-head" id="inflaveis">
+            <div class="kicker novo">Novidade na Brinkpark</div>
+            <h2>Linha de Infláveis</h2>
+            <p>O que faltava para fechar a festa completa: piscina de bolinhas, tobogã, futebol de sabão e mais.</p>
+        </div>
+        <div class="rail-hint">Arraste para o lado para ver a linha completa</div>
+        <div class="rail" id="railInflaveis"></div>
+
+        <div class="combo">
+            <div class="combo-inner">
+                <div class="kicker">Melhor negócio</div>
+                <h3>Monte seu combo:<br>cama elástica + inflável</h3>
+                <p>Quem trabalha com locação fatura mais oferecendo mais de um brinquedo por evento. Fale com a gente e monte o combo ideal para o seu público.</p>
+                <ul>
+                    <li>
+                        <svg viewBox="0 0 24 24" fill="none"><path d="m5 13 4 4L19 7" stroke="#FFC609" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        Condição especial na compra de mais de um item
+                    </li>
+                    <li>
+                        <svg viewBox="0 0 24 24" fill="none"><path d="m5 13 4 4L19 7" stroke="#FFC609" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        Frete grátis para todo o Brasil, sempre
+                    </li>
+                    <li>
+                        <svg viewBox="0 0 24 24" fill="none"><path d="m5 13 4 4L19 7" stroke="#FFC609" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        Orientação de qual combinação rende mais na sua região
+                    </li>
+                </ul>
+                <button onclick="abrirWhats('Combo cama elástica + inflável')">Montar meu combo</button>
+            </div>
+        </div>
+
+        <div class="guarantees">
+            <div class="g-item">
+                <div class="g-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z" stroke="#00A63E" stroke-width="2" stroke-linejoin="round"/><path d="m9 12 2 2 4-4" stroke="#00A63E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+                <div class="g-text">
+                    <h4>Garantia de 12 meses</h4>
+                    <p>Troca grátis em caso de defeito de fabricação, sem burocracia.</p>
+                </div>
+            </div>
+            <div class="g-item">
+                <div class="g-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z" stroke="#00A63E" stroke-width="2" stroke-linejoin="round"/><path d="m3.3 7 8.7 5 8.7-5M12 22V12" stroke="#00A63E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+                <div class="g-text">
+                    <h4>Frete grátis e entrega rápida</h4>
+                    <p>Enviamos para todo o Brasil, de 7 a 15 dias, sem custo de frete.</p>
+                </div>
+            </div>
+            <div class="g-item">
+                <div class="g-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M12 8v5M12 16h.01" stroke="#00A63E" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="12" r="9" stroke="#00A63E" stroke-width="2"/></svg></div>
+                <div class="g-text">
+                    <h4>7 dias para arrependimento</h4>
+                    <p>Não gostou? Devolvemos o valor integral, com devolução grátis.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="cta-bar">
+        <div class="inner">
+            <div class="txt">
+                <strong>Fale com um especialista</strong>
+                <span>Tiramos sua dúvida e montamos o orçamento</span>
+            </div>
+            <button class="btn-whats" onclick="abrirWhats('geral')">
+                <svg width="16" height="16" viewBox="0 0 32 32" fill="none"><path fill-rule="evenodd" clip-rule="evenodd" d="M26.179 6.047a13.815 13.815 0 0 0-9.836-4.078C8.678 1.97 2.44 8.207 2.437 15.874c0 2.45.64 4.842 1.857 6.951L2.32 30.031l7.371-1.934a13.893 13.893 0 0 0 6.645 1.692h.006c7.663 0 13.902-6.238 13.905-13.904a13.821 13.821 0 0 0-4.069-9.838zm-9.836 21.394h-.005a11.54 11.54 0 0 1-5.882-1.61l-.422-.251-4.375 1.147 1.168-4.265-.275-.437a11.53 11.53 0 0 1-1.767-6.15C4.788 9.501 9.972 4.317 16.347 4.317a11.479 11.479 0 0 1 8.171 3.39 11.488 11.488 0 0 1 3.382 8.176c-.002 6.372-5.187 11.557-11.557 11.557z" fill="#fff"/><path d="M22.682 18.785c-.347-.174-2.055-1.014-2.374-1.13-.318-.116-.55-.174-.782.174-.231.348-.897 1.13-1.1 1.362-.202.232-.405.261-.752.087-.348-.174-1.467-.54-2.794-1.724-1.033-.922-1.73-2.06-1.933-2.407-.203-.348-.022-.536.152-.71.156-.155.348-.405.521-.608.174-.203.232-.348.348-.58.116-.232.058-.434-.03-.608-.086-.174-.781-1.884-1.07-2.58-.283-.678-.569-.586-.782-.597-.203-.01-.435-.012-.666-.012-.232 0-.608.087-.927.435-.318.348-1.216 1.188-1.216 2.898 0 1.71 1.245 3.363 1.419 3.595.174.232 2.45 3.74 5.935 5.246.83.358 1.476.572 1.98.732.833.264 1.59.227 2.19.137.667-.1 2.055-.84 2.345-1.652.289-.811.289-1.507.202-1.652-.087-.145-.318-.232-.666-.406z" fill="#fff"/></svg>
+                WhatsApp
+            </button>
+        </div>
+    </div>
+
+    <script src="../dados.js"></script>
+    <script>
+        function slideCama(c) {
+            return '<div class="slide" onclick="abrirWhats(\'' + c.nome + ' ' + c.linha + '\')">' +
+                '<div class="slide-photo">' +
+                    '<span class="slide-flag">' + c.desconto + '</span>' +
+                    '<img src="' + c.img + '" alt="' + c.nome + '" loading="lazy">' +
+                '</div>' +
+                '<div class="slide-body">' +
+                    '<div class="kicker">' + c.linha + '</div>' +
+                    '<h3>' + c.nome + '</h3>' +
+                    '<div class="spec">' + c.specs.join(' · ') + '</div>' +
+                    '<div class="slide-price">' +
+                        '<div class="from">De ' + c.de + '</div>' +
+                        '<div class="now">' + c.pix + '</div>' +
+                        '<div class="inst">ou 12x de ' + c.parcela + '</div>' +
+                    '</div>' +
+                    '<button class="slide-btn">Quero este modelo</button>' +
+                '</div>' +
+            '</div>';
+        }
+
+        function slideInflavel(f) {
+            return '<div class="slide" onclick="abrirWhats(\'' + f.nome + '\')">' +
+                '<div class="slide-photo">' +
+                    '<span class="slide-flag novo">' + (f.emBreve ? 'Em breve' : 'Novo') + '</span>' +
+                    '<img src="' + f.img + '" alt="' + f.nome + '" loading="lazy">' +
+                '</div>' +
+                '<div class="slide-body">' +
+                    '<div class="kicker">Linha Infláveis</div>' +
+                    '<h3>' + f.nome + '</h3>' +
+                    '<div class="spec">' + f.specs.join(' · ') + '</div>' +
+                    '<div class="slide-price">' +
+                        '<div class="consult">Consulte<span>valor no WhatsApp</span></div>' +
+                    '</div>' +
+                    '<button class="slide-btn">Quero saber mais</button>' +
+                '</div>' +
+            '</div>';
+        }
+
+        document.getElementById('railCamas').innerHTML = CAMAS.map(slideCama).join('');
+        document.getElementById('railInflaveis').innerHTML = INFLAVEIS.map(slideInflavel).join('');
+
+        function irPara(id) {
+            document.getElementById(id).scrollIntoView({ behavior: 'smooth', block: 'start' });
+            if (window.dataLayer) { window.dataLayer.push({ event: 'catalogo_navegacao', destino: id }); }
+        }
+    </script>
+</body>
+
+</html>

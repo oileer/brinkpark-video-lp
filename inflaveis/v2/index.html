@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Camas Elásticas e Infláveis - Brinkpark</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <!-- Google Tag Manager -->
+    <script>(function (w, d, s, l, i) {
+            w[l] = w[l] || []; w[l].push({
+                'gtm.start':
+                    new Date().getTime(), event: 'gtm.js'
+            }); var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+                    'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-NVFJB7JC');</script>
+    <!-- End Google Tag Manager -->
+    <style>
+        :root {
+            --white: #ffffff;
+            --text-dark: #101828;
+            --text-gray: #4A5565;
+            --text-muted: #99A1AF;
+            --green: #00A63E;
+            --green-dark: #008236;
+            --red: #E7000B;
+            --blue: #0F6FC5;
+            --surface: #F9FAFB;
+            --border: #E5E7EB;
+            --radius: 16px;
+        }
+
+        * {
+            margin: 0; padding: 0; box-sizing: border-box;
+            font-family: 'Inter', Arial, sans-serif; -webkit-font-smoothing: antialiased;
+        }
+
+        body { background: var(--surface); color: var(--text-dark); }
+        img { max-width: 100%; display: block; }
+
+        .app {
+            max-width: 460px; margin: 0 auto; background: var(--white);
+            min-height: 100vh; padding-bottom: 96px; box-shadow: 0 0 24px rgba(0,0,0,.04);
+        }
+
+        /* TOPBAR */
+        .topbar {
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 12px 18px; background: var(--white);
+            border-bottom: 1px solid var(--border);
+        }
+        .topbar .brand { display: flex; align-items: center; gap: 10px; }
+        .topbar .brand img { height: 34px; width: auto; }
+        .topbar .brand .brand-txt { line-height: 1.15; }
+        .topbar .brand strong {
+            display: block; font-size: 14px; font-weight: 900; letter-spacing: -.2px; color: var(--text-dark);
+        }
+        .topbar .brand span {
+            font-size: 9.5px; font-weight: 700; letter-spacing: 1.1px;
+            text-transform: uppercase; color: var(--text-muted);
+        }
+        .topbar .top-whats {
+            display: flex; align-items: center; gap: 6px; background: #E9FBF0; border: 1px solid #BFEBD1;
+            color: #067A38; font-size: 11.5px; font-weight: 700; padding: 8px 12px; border-radius: 999px;
+            cursor: pointer;
+        }
+        .topbar .top-whats svg { width: 14px; height: 14px; }
+
+        /* HERO */
+        .hero {
+            background: linear-gradient(155deg, #D51F26 0%, #9E1015 100%);
+            color: #fff; padding: 26px 20px 24px; position: relative; overflow: hidden;
+        }
+        .hero::before {
+            content: ''; position: absolute; width: 300px; height: 300px; border-radius: 50%;
+            background: radial-gradient(circle, rgba(255,198,9,.4), transparent 66%);
+            top: -140px; right: -90px;
+        }
+        .hero::after {
+            content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 5px;
+            background: linear-gradient(90deg, #FFC609 0%, #FFC609 34%, rgba(255,255,255,.25) 34%, rgba(255,255,255,.25) 100%);
+        }
+        .hero-inner { position: relative; }
+        .hero .eyebrow {
+            display: inline-flex; align-items: center; gap: 7px;
+            font-size: 10.5px; font-weight: 800; letter-spacing: 1.4px; text-transform: uppercase;
+            color: #2A0405; background: #FFC609; padding: 5px 11px; border-radius: 999px; margin-bottom: 14px;
+        }
+        .hero h1 { font-size: 27px; font-weight: 900; line-height: 1.15; letter-spacing: -.5px; }
+        .hero h1 span { color: #FFC609; }
+        .hero p { font-size: 13.5px; color: rgba(255,255,255,.85); margin-top: 10px; line-height: 1.55; }
+
+        .hero-stats { display: flex; gap: 8px; margin-top: 18px; }
+        .hero-stat {
+            flex: 1; background: rgba(0,0,0,.18); border: 1px solid rgba(255,255,255,.22);
+            border-radius: 12px; padding: 10px 8px; text-align: center;
+        }
+        .hero-stat strong { display: block; font-size: 15px; font-weight: 800; }
+        .hero-stat span { font-size: 10px; color: rgba(255,255,255,.7); }
+
+        /* FILTRO */
+        .filters {
+            position: sticky; top: 0; z-index: 30; background: var(--white);
+            border-bottom: 1px solid var(--border); padding: 12px 16px;
+            display: flex; gap: 8px; overflow-x: auto; -webkit-overflow-scrolling: touch;
+        }
+        .filters::-webkit-scrollbar { display: none; }
+        .chip {
+            border: 1px solid var(--border); background: var(--white); color: var(--text-gray);
+            font-size: 13px; font-weight: 600; padding: 9px 16px; border-radius: 999px;
+            white-space: nowrap; cursor: pointer; transition: .15s;
+        }
+        .chip.active { background: var(--text-dark); border-color: var(--text-dark); color: #fff; }
+
+        /* GRID */
+        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; padding: 16px; }
+
+        .tile {
+            border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden;
+            background: var(--white); display: flex; flex-direction: column; cursor: pointer;
+            transition: .18s; text-align: left;
+        }
+        .tile:active { transform: scale(.985); }
+
+        .tile-photo { position: relative; background: #F3F4F6; }
+        .tile-photo img { width: 100%; aspect-ratio: 1/1; object-fit: cover; }
+        .tile-flag {
+            position: absolute; top: 8px; left: 8px; font-size: 10.5px; font-weight: 700;
+            color: #fff; padding: 4px 9px; border-radius: 999px; background: var(--red);
+            box-shadow: 0 2px 8px rgba(0,0,0,.18);
+        }
+        .tile-flag.novo { background: var(--blue); }
+
+        .tile-body { padding: 12px; display: flex; flex-direction: column; gap: 6px; flex: 1; }
+        .tile-kicker { font-size: 10px; font-weight: 700; letter-spacing: .5px; text-transform: uppercase; color: var(--text-muted); }
+        .tile h3 { font-size: 14.5px; font-weight: 800; line-height: 1.2; }
+        .tile .spec { font-size: 11.5px; color: var(--text-gray); line-height: 1.45; }
+
+        .tile-price { margin-top: auto; padding-top: 8px; }
+        .tile-price .from { font-size: 10.5px; color: var(--text-muted); text-decoration: line-through; }
+        .tile-price .now { font-size: 16px; font-weight: 800; color: var(--green); line-height: 1.15; }
+        .tile-price .inst { font-size: 10.5px; color: var(--text-gray); }
+        .tile-price .consult { font-size: 13px; font-weight: 700; color: var(--text-dark); }
+        .tile-price .consult span { display: block; font-size: 10.5px; font-weight: 500; color: var(--text-gray); }
+
+        .tile-btn {
+            margin-top: 10px; width: 100%; border: none; border-radius: 10px; cursor: pointer;
+            background: linear-gradient(180deg, var(--green), var(--green-dark)); color: #fff;
+            font-size: 12.5px; font-weight: 700; padding: 10px 8px;
+        }
+
+        /* SECAO INFO */
+        .section-head { padding: 22px 16px 2px; }
+        .section-head h2 { font-size: 18px; font-weight: 800; }
+        .section-head p { font-size: 13px; color: var(--text-gray); margin-top: 3px; }
+
+        .whys { padding: 4px 16px 24px; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+        .why {
+            border: 1px solid var(--border); border-radius: 12px; padding: 14px 12px; background: var(--surface);
+        }
+        .why svg { width: 22px; height: 22px; margin-bottom: 8px; }
+        .why h4 { font-size: 12.5px; font-weight: 700; }
+        .why p { font-size: 11px; color: var(--text-gray); margin-top: 2px; line-height: 1.4; }
+
+        /* CTA */
+        .cta-bar {
+            position: fixed; bottom: 0; left: 0; right: 0; z-index: 40; background: var(--white);
+            border-top: 1px solid var(--border); padding: 12px 16px calc(12px + env(safe-area-inset-bottom));
+            box-shadow: 0 -6px 20px rgba(0,0,0,.07);
+        }
+        .cta-bar .inner { max-width: 460px; margin: 0 auto; }
+        .btn-whats {
+            width: 100%; background: #25D366; color: #fff; border: none; border-radius: 999px;
+            font-size: 14.5px; font-weight: 700; padding: 14px; cursor: pointer;
+            display: flex; align-items: center; justify-content: center; gap: 9px;
+        }
+
+        /* MODAL */
+        .overlay {
+            position: fixed; inset: 0; background: rgba(0,0,0,.55); z-index: 60;
+            display: none; align-items: flex-end; justify-content: center;
+        }
+        .overlay.open { display: flex; }
+        .sheet {
+            background: #fff; width: 100%; max-width: 460px; border-radius: 20px 20px 0 0;
+            max-height: 88vh; overflow-y: auto; animation: up .22s ease;
+        }
+        @keyframes up { from { transform: translateY(30px); opacity: .6 } to { transform: none; opacity: 1 } }
+        .sheet-photo { width: 100%; aspect-ratio: 4/3; object-fit: cover; }
+        .sheet-body { padding: 18px 18px calc(18px + env(safe-area-inset-bottom)); }
+        .sheet-body h3 { font-size: 19px; font-weight: 800; }
+        .sheet-body .lead { font-size: 13px; color: var(--text-gray); margin-top: 4px; }
+        .sheet-specs { display: flex; flex-wrap: wrap; gap: 6px; margin: 14px 0; }
+        .sheet-specs span {
+            font-size: 11.5px; font-weight: 600; background: var(--surface);
+            border: 1px solid var(--border); padding: 5px 10px; border-radius: 8px;
+        }
+        .sheet-body .desc { font-size: 13px; color: var(--text-gray); line-height: 1.6; }
+        .sheet-price { margin: 16px 0 4px; }
+        .sheet-price .now { font-size: 24px; font-weight: 800; color: var(--green); }
+        .sheet-price .inst { font-size: 12.5px; color: var(--text-gray); }
+        .sheet-close {
+            width: 100%; margin-top: 10px; background: none; border: none; color: var(--text-muted);
+            font-size: 13px; font-weight: 600; padding: 10px; cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NVFJB7JC" height="0" width="0"
+            style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+    <div class="app">
+        <header class="topbar">
+            <div class="brand">
+                <img src="../assets/logo-brinkpark.svg" alt="Brinkpark">
+                <div class="brand-txt">
+                    <strong>Brinkpark</strong>
+                    <span>Catálogo oficial</span>
+                </div>
+            </div>
+            <button class="top-whats" onclick="abrirWhats('geral')">
+                <svg viewBox="0 0 32 32" fill="none"><path fill-rule="evenodd" clip-rule="evenodd" d="M26.179 6.047a13.815 13.815 0 0 0-9.836-4.078C8.678 1.97 2.44 8.207 2.437 15.874c0 2.45.64 4.842 1.857 6.951L2.32 30.031l7.371-1.934a13.893 13.893 0 0 0 6.645 1.692h.006c7.663 0 13.902-6.238 13.905-13.904a13.821 13.821 0 0 0-4.069-9.838zm-9.836 21.394h-.005a11.54 11.54 0 0 1-5.882-1.61l-.422-.251-4.375 1.147 1.168-4.265-.275-.437a11.53 11.53 0 0 1-1.767-6.15C4.788 9.501 9.972 4.317 16.347 4.317a11.479 11.479 0 0 1 8.171 3.39 11.488 11.488 0 0 1 3.382 8.176c-.002 6.372-5.187 11.557-11.557 11.557z" fill="#067A38"/></svg>
+                Falar
+            </button>
+        </header>
+
+        <section class="hero">
+            <div class="hero-inner">
+                <div class="eyebrow">Novidade 2026</div>
+                <h1>Camas elásticas<br>e agora <span>infláveis</span></h1>
+                <p>A linha completa para quem quer ter em casa ou montar o próprio negócio de locação.</p>
+                <div class="hero-stats">
+                    <div class="hero-stat"><strong>+2.500</strong><span>famílias atendidas</span></div>
+                    <div class="hero-stat"><strong>4.9/5</strong><span>avaliação média</span></div>
+                    <div class="hero-stat"><strong>12 meses</strong><span>de garantia</span></div>
+                </div>
+            </div>
+        </section>
+
+        <div class="filters" id="filtros">
+            <button class="chip active" data-f="todos">Todos</button>
+            <button class="chip" data-f="camas">Camas elásticas</button>
+            <button class="chip" data-f="inflaveis">Infláveis</button>
+            <button class="chip" data-f="europa">Linha Europa</button>
+            <button class="chip" data-f="tradicional">Linha Tradicional</button>
+        </div>
+
+        <div class="grid" id="grid"></div>
+
+        <div class="section-head">
+            <h2>Por que comprar conosco</h2>
+            <p>Garantia real, entrega para todo o Brasil e suporte de verdade.</p>
+        </div>
+
+        <div class="whys">
+            <div class="why">
+                <svg viewBox="0 0 24 24" fill="none"><path d="M13.99 17.99V6c0-.53-.21-1.04-.59-1.41-.37-.38-.88-.59-1.41-.59H4c-.53 0-1.04.21-1.41.59C2.21 4.96 2 5.47 2 6v11c0 .27.11.51.29.7.19.19.44.29.71.29H5M14.99 17.99H8.99M18.99 17.99h2c.27 0 .51-.11.7-.29.19-.19.29-.44.29-.71v-3.65c0-.23-.08-.45-.22-.62l-3.48-4.35a1 1 0 0 0-.78-.38h-3.52" stroke="#00A63E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M16.99 19.99a2 2 0 1 0 0-4 2 2 0 0 0 0 4ZM7 19.99a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z" stroke="#00A63E" stroke-width="2"/></svg>
+                <h4>Frete grátis</h4>
+                <p>Para todo o Brasil, sem custo extra</p>
+            </div>
+            <div class="why">
+                <svg viewBox="0 0 24 24" fill="none"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z" stroke="#00A63E" stroke-width="2" stroke-linejoin="round"/><path d="m9 12 2 2 4-4" stroke="#00A63E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                <h4>Garantia 12 meses</h4>
+                <p>Troca grátis em caso de defeito</p>
+            </div>
+            <div class="why">
+                <svg viewBox="0 0 24 24" fill="none"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z" stroke="#00A63E" stroke-width="2" stroke-linejoin="round"/><path d="m3.3 7 8.7 5 8.7-5M12 22V12" stroke="#00A63E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                <h4>Entrega rápida</h4>
+                <p>De 7 a 15 dias na sua casa</p>
+            </div>
+            <div class="why">
+                <svg viewBox="0 0 24 24" fill="none"><path d="M12 2 4 5v6c0 5.5 3.4 10.7 8 12 4.6-1.3 8-6.5 8-12V5l-8-3Z" stroke="#00A63E" stroke-width="2" stroke-linejoin="round"/></svg>
+                <h4>Compra segura</h4>
+                <p>7 dias para arrependimento</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="cta-bar">
+        <div class="inner">
+            <button class="btn-whats" onclick="abrirWhats('geral')">
+                <svg width="18" height="18" viewBox="0 0 32 32" fill="none"><path fill-rule="evenodd" clip-rule="evenodd" d="M26.179 6.047a13.815 13.815 0 0 0-9.836-4.078C8.678 1.97 2.44 8.207 2.437 15.874c0 2.45.64 4.842 1.857 6.951L2.32 30.031l7.371-1.934a13.893 13.893 0 0 0 6.645 1.692h.006c7.663 0 13.902-6.238 13.905-13.904a13.821 13.821 0 0 0-4.069-9.838zm-9.836 21.394h-.005a11.54 11.54 0 0 1-5.882-1.61l-.422-.251-4.375 1.147 1.168-4.265-.275-.437a11.53 11.53 0 0 1-1.767-6.15C4.788 9.501 9.972 4.317 16.347 4.317a11.479 11.479 0 0 1 8.171 3.39 11.488 11.488 0 0 1 3.382 8.176c-.002 6.372-5.187 11.557-11.557 11.557z" fill="#fff"/><path d="M22.682 18.785c-.347-.174-2.055-1.014-2.374-1.13-.318-.116-.55-.174-.782.174-.231.348-.897 1.13-1.1 1.362-.202.232-.405.261-.752.087-.348-.174-1.467-.54-2.794-1.724-1.033-.922-1.73-2.06-1.933-2.407-.203-.348-.022-.536.152-.71.156-.155.348-.405.521-.608.174-.203.232-.348.348-.58.116-.232.058-.434-.03-.608-.086-.174-.781-1.884-1.07-2.58-.283-.678-.569-.586-.782-.597-.203-.01-.435-.012-.666-.012-.232 0-.608.087-.927.435-.318.348-1.216 1.188-1.216 2.898 0 1.71 1.245 3.363 1.419 3.595.174.232 2.45 3.74 5.935 5.246.83.358 1.476.572 1.98.732.833.264 1.59.227 2.19.137.667-.1 2.055-.84 2.345-1.652.289-.811.289-1.507.202-1.652-.087-.145-.318-.232-.666-.406z" fill="#fff"/></svg>
+                Pedir orçamento no WhatsApp
+            </button>
+        </div>
+    </div>
+
+    <div class="overlay" id="overlay" onclick="fecharSheet(event)">
+        <div class="sheet" id="sheet" onclick="event.stopPropagation()"></div>
+    </div>
+
+    <script src="../dados.js"></script>
+    <script>
+        var ITENS = CAMAS.map(function (c, i) {
+            return {
+                tipo: 'camas', grupo: c.grupo, idx: i, nome: c.nome, full: c.nome + ' ' + c.linha, kicker: c.linha,
+                img: c.img, spec: c.specs.join(' · '), desc: c.resumo,
+                de: c.de, pix: c.pix, parcela: c.parcela, flag: c.desconto, specs: c.specs
+            };
+        }).concat(INFLAVEIS.map(function (f, i) {
+            return {
+                tipo: 'inflaveis', grupo: 'inflaveis', idx: i, nome: f.nome, full: f.nome, kicker: 'Linha Infláveis',
+                img: f.img, spec: f.specs.join(' · '), desc: f.desc,
+                flag: f.emBreve ? 'Em breve' : 'Novo', flagNovo: true, specs: f.specs
+            };
+        }));
+
+        var filtroAtual = 'todos';
+
+        function visivel(it) {
+            if (filtroAtual === 'todos') return true;
+            if (filtroAtual === 'camas') return it.tipo === 'camas';
+            if (filtroAtual === 'inflaveis') return it.tipo === 'inflaveis';
+            return it.grupo === filtroAtual;
+        }
+
+        function render() {
+            var html = ITENS.filter(visivel).map(function (it, i) {
+                var preco = it.pix
+                    ? '<div class="from">De ' + it.de + '</div>' +
+                      '<div class="now">' + it.pix + '</div>' +
+                      '<div class="inst">ou 12x de ' + it.parcela + '</div>'
+                    : '<div class="consult">Consulte<span>valor no WhatsApp</span></div>';
+                return '<div class="tile" onclick="abrirSheet(' + ITENS.indexOf(it) + ')">' +
+                    '<div class="tile-photo">' +
+                        '<span class="tile-flag' + (it.flagNovo ? ' novo' : '') + '">' + it.flag + '</span>' +
+                        '<img src="' + it.img + '" alt="' + it.nome + '" loading="lazy">' +
+                    '</div>' +
+                    '<div class="tile-body">' +
+                        '<div class="tile-kicker">' + it.kicker + '</div>' +
+                        '<h3>' + it.nome + '</h3>' +
+                        '<div class="spec">' + it.spec + '</div>' +
+                        '<div class="tile-price">' + preco + '</div>' +
+                        '<button class="tile-btn" onclick="event.stopPropagation();abrirWhats(\'' + it.full + '\')">Quero este</button>' +
+                    '</div>' +
+                '</div>';
+            }).join('');
+            document.getElementById('grid').innerHTML = html;
+        }
+
+        document.getElementById('filtros').addEventListener('click', function (e) {
+            var b = e.target.closest('.chip');
+            if (!b) return;
+            document.querySelectorAll('.chip').forEach(function (c) { c.classList.remove('active'); });
+            b.classList.add('active');
+            filtroAtual = b.dataset.f;
+            if (window.dataLayer) { window.dataLayer.push({ event: 'catalogo_filtro', filtro: filtroAtual }); }
+            render();
+        });
+
+        function abrirSheet(i) {
+            var it = ITENS[i];
+            var preco = it.pix
+                ? '<div class="sheet-price"><div class="now">' + it.pix + ' à vista</div>' +
+                  '<div class="inst">ou 12x de ' + it.parcela + ' sem juros</div></div>'
+                : '<div class="sheet-price"><div class="now">Consulte o valor</div>' +
+                  '<div class="inst">Fale com a gente no WhatsApp e monte seu combo</div></div>';
+            document.getElementById('sheet').innerHTML =
+                '<img class="sheet-photo" src="' + it.img + '" alt="' + it.nome + '">' +
+                '<div class="sheet-body">' +
+                    '<h3>' + it.nome + '</h3>' +
+                    '<div class="lead">' + it.kicker + '</div>' +
+                    '<div class="sheet-specs">' + it.specs.map(function (s) { return '<span>' + s + '</span>'; }).join('') + '</div>' +
+                    '<p class="desc">' + it.desc + '</p>' +
+                    preco +
+                    '<button class="btn-whats" style="margin-top:14px" onclick="abrirWhats(\'' + it.full + '\')">Falar no WhatsApp</button>' +
+                    '<button class="sheet-close" onclick="fecharSheet()">Fechar</button>' +
+                '</div>';
+            document.getElementById('overlay').classList.add('open');
+            if (window.dataLayer) { window.dataLayer.push({ event: 'catalogo_ver_detalhes', item: it.nome }); }
+        }
+
+        function fecharSheet(e) {
+            if (e && e.target !== document.getElementById('overlay')) return;
+            document.getElementById('overlay').classList.remove('open');
+        }
+
+        render();
+    </script>
+</body>
+
+</html>

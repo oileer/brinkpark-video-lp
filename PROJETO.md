@@ -134,3 +134,77 @@ final (não precisa clicar "Quero este" nele).
    (b) "vídeo 4" do diagrama que não bate com nenhum arquivo entregue.
 2. Vídeos comprimidos (libx264 720p CRF 26) — comparar qualidade com o cliente.
 3. Dashboard de analytics aprovado (R$2.000) — ver DASHBOARD.md.
+
+---
+
+## /inflaveis/ (07/08/2026) — catálogo Camas Elásticas + linha de Infláveis
+
+**STATUS: aguardando o cliente escolher a versão E aprovar o orçamento.**
+Nada aqui foi contratado ainda — as 3 versões são proposta.
+
+Demanda nova do cliente (2 áudios no WhatsApp em 05/08, transcritos com whisper.cpp):
+uma página com as camas elásticas **e os infláveis juntos**, no mesmo estilo da `/modelos`
+("como tu fez das camas ali dos modelos, só que agora vai ter também os infláveis"),
+"bem bonita e convertível". Junto veio `catalogo-gd-brinquedos.pdf` como base de conteúdo.
+
+### URLs
+
+- Seletora: https://brinkpark-video-lp.vercel.app/inflaveis/
+- v1: `/inflaveis/v1/` · v2: `/inflaveis/v2/` · v3: `/inflaveis/v3/`
+
+### As 3 versões
+
+| | Proposta | Aposta |
+|---|---|---|
+| v1 | Catálogo clássico — lista vertical igual `/modelos`; infláveis no topo, camas abaixo separadas em Europa e Tradicional | Familiaridade e comparação de preço |
+| v2 | Vitrine em grade 2× com filtros (Todos/Camas/Infláveis/Europa/Tradicional) e ficha em bottom sheet | Foto valorizando o produto |
+| v3 | Editorial — capa, carrosséis horizontais por linha e bloco de **combo cama + inflável** | Ticket maior, público de locação |
+
+### Estrutura
+
+```
+inflaveis/index.html   → seletora das 3 versões (apresentação p/ cliente)
+inflaveis/dados.js     → CAMAS + INFLAVEIS + abrirWhats() — fonte única das 3 versões
+inflaveis/v1|v2|v3/    → um index.html autocontido cada (CSS/JS inline)
+inflaveis/assets/camas/      → capas 600x600 dos 6 modelos
+inflaveis/assets/inflaveis/  → fotos extraídas do PDF (PROVISÓRIAS, ver abaixo)
+inflaveis/assets/logo-brinkpark.svg + icons/
+```
+
+Mexer em preço, spec ou texto de produto = editar só `dados.js`, as 3 versões consomem.
+Todas herdam a identidade da `/modelos` (Inter, paleta da marca, ícones SVG inline) e o
+GTM-NVFJB7JC, com eventos próprios: `catalogo_whatsapp_click`, `catalogo_filtro`,
+`catalogo_ver_detalhes`, `catalogo_navegacao`.
+
+### Decisões e armadilhas
+
+- **Fotos das camas:** usar as `capa.png` (600x600) de `modelos/<produto>/fotos/`.
+  As `modelos/assets/produto-*.png` são **thumbnails de 72x72** — estouram ao ampliar
+  (foi o erro da primeira tentativa).
+- **Fotos dos infláveis são provisórias.** Extraídas do `catalogo-gd-brinquedos.pdf`
+  com PyMuPDF em resolução nativa (1024–1200px). O PDF é da **GD Brinquedos**
+  (locadora de Itarana-ES), não da Brinkpark: algumas imagens têm marca d'água do logo GD,
+  uma traz a marca "ProPula Inflatables" no produto e várias parecem geradas por IA.
+  **Trocar pelas oficiais antes de qualquer divulgação** — basta sobrescrever os arquivos
+  em `assets/inflaveis/` mantendo os nomes. O repo é público, então a URL do Vercel é
+  aberta a quem tem o link.
+- Por decisão do cliente as páginas **não levam aviso de "foto ilustrativa"** — as versões
+  precisam estar exatamente como o cliente final veria.
+- Selo "Em breve" nos infláveis veio do PDF da GD e **pode não valer pra Brinkpark** —
+  confirmar disponibilidade real; é só remover `emBreve: true` do `dados.js`.
+- Header das 4 páginas leva **só a logo**. O SVG é apenas o monograma (sem a palavra
+  "Brinkpark"), mas o lockup logo + nome em preto destoava da paleta e foi descartado.
+- Preços dos infláveis: não existem ainda — todos os CTAs vão como "Consulte no WhatsApp".
+
+### Pendências
+
+1. **Cliente escolher entre v1/v2/v3 e aprovar o orçamento** (bloqueia o resto).
+2. Fotos oficiais dos infláveis (as atuais são de terceiros, não podem ir ao ar).
+3. Tabela de preços dos infláveis, se forem ter preço na página.
+4. Confirmar quais infláveis já estão disponíveis (hoje 3 estão como "Em breve").
+5. Definir onde a página entra: subdiretório do domínio deles ou seção do site oficial.
+
+### Materiais de origem (PC do escritório)
+
+`C:\Users\user\Downloads\lp brinkpark 06-08\` → 2 áudios .ogg + WAVs, `catalogo.txt`
+(texto do PDF via pdftotext) e `imgs/` com as 21 imagens extraídas do PDF.

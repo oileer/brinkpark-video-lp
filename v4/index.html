@@ -289,6 +289,23 @@
         var WHATS_NUMERO = '5549998282916'; // confirmado com cliente 16/07/2026 (site oficial usa outro: 49 99972-6205)
         var SITE_URL = 'https://www.brinkpark.com.br/';
         var ML_URL = 'https://www.mercadolivre.com.br/pagina/bb20250204144108#from=share_eshop';
+
+        // Página de cada modelo no site oficial (sitemap conferido 17/07/2026).
+        // OBS: o 4,27m usa a URL "4-00m" no site — conferido, o título da página lá é 4,27M.
+        var SITE_LINKS = {
+            '2,44m Nacional': 'https://www.brinkpark.com.br/cama-elastica-2-44m-modelo-tradicional',
+            '3,05m Nacional': 'https://www.brinkpark.com.br/cama-elastica-3-05m-modelo-tradicional',
+            '4,27m Nacional': 'https://www.brinkpark.com.br/cama-elastica-4-00m-modelo-tradicional',
+            '4,90m Nacional': 'https://www.brinkpark.com.br/cama-elastica-4-90m-modelo-tradicional',
+            '2,44m Europa':   'https://www.brinkpark.com.br/cama-elastica-2-44m-modelo-europa',
+            '3,05m Europa':   'https://www.brinkpark.com.br/cama-elastica-3-05m-modelo-europa'
+        };
+
+        // Anúncio de cada modelo no Mercado Livre — preencher com o link de cada anúncio.
+        // Modelo sem link cai na página geral da loja (ML_URL).
+        var ML_LINKS = {
+            // '2,44m Nacional': 'https://produto.mercadolivre.com.br/MLB-...',
+        };
         var HUB_MODELOS = '../modelos/';
 
         // Preços do site oficial (16/07/2026) — "Nacional" = Modelo Tradicional na loja.
@@ -654,12 +671,14 @@
                 window.location.href = 'https://wa.me/' + WHATS_NUMERO + '?text=' + encodeURIComponent(msg);
             },
             irSite: function () {
-                track('funil_site_click', { modelo: estado.modelo, regiao: estado.regiao, linha: estado.linha });
-                window.location.href = SITE_URL;
+                var modelo = estado.modelo || estado.modeloVisto;
+                track('funil_site_click', { modelo: modelo, regiao: estado.regiao, linha: estado.linha });
+                window.location.href = SITE_LINKS[modelo] || SITE_URL;
             },
             irMercadoLivre: function () {
-                track('funil_ml_click', { modelo: estado.modelo, regiao: estado.regiao, linha: estado.linha });
-                window.location.href = ML_URL;
+                var modelo = estado.modelo || estado.modeloVisto;
+                track('funil_ml_click', { modelo: modelo, regiao: estado.regiao, linha: estado.linha });
+                window.location.href = ML_LINKS[modelo] || ML_URL;
             },
             verDetalhes: function () {
                 track('funil_ver_detalhes', { modelo: estado.modelo });

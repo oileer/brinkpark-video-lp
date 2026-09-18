@@ -10,39 +10,39 @@ var CAMAS = [
     {
         nome: 'Cama Elástica 2,44M', linha: 'Modelo Europa', grupo: 'europa',
         img: '../assets/camas/244-europa.png',
-        de: 'R$ 1.600,00', pix: 'R$ 1.397,00', parcela: 'R$ 148,53',
-        desconto: '-13%', ultimas: true,
+        de: 'R$ 1.697,00', pix: 'R$ 1.397,00', parcela: 'R$ 133,00',
+        desconto: '-18%', ultimas: true,
         specs: ['2,44 m', 'Rede de proteção', 'Escada de acesso'],
         resumo: 'Ideal para ter em casa, com segurança para os pequenos.'
     },
     {
         nome: 'Cama Elástica 3,05M', linha: 'Modelo Europa', grupo: 'europa',
         img: '../assets/camas/305-europa.png',
-        de: 'R$ 2.100,00', pix: 'R$ 1.797,00', parcela: 'R$ 190,89',
-        desconto: '-14%',
+        de: 'R$ 2.197,00', pix: 'R$ 1.797,00', parcela: 'R$ 170,00',
+        desconto: '-18%',
         specs: ['3,05 m', 'Rede de proteção', 'Escada de acesso'],
         resumo: 'O tamanho mais pedido para quintal e área de lazer.'
     },
     {
         nome: 'Cama Elástica 2,44M', linha: 'Modelo Tradicional', grupo: 'tradicional',
         img: '../assets/camas/244-nacional.png',
-        de: 'R$ 1.800,00', pix: 'R$ 1.497,00', parcela: 'R$ 159,05',
-        desconto: '-17%',
+        de: 'R$ 2.147,00', pix: 'R$ 1.597,00', parcela: 'R$ 153,00',
+        desconto: '-26%',
         specs: ['2,44 m', 'Rede naval reforçada', 'Uso intenso'],
         resumo: 'Reforçada, feita para aguentar o ritmo da locação.'
     },
     {
         nome: 'Cama Elástica 3,05M', linha: 'Modelo Tradicional', grupo: 'tradicional',
         img: '../assets/camas/305-nacional.png',
-        de: 'R$ 2.400,00', pix: 'R$ 1.897,00', parcela: 'R$ 201,69',
-        desconto: '-21%', ultimas: true,
+        de: 'R$ 2.397,00', pix: 'R$ 1.997,00', parcela: 'R$ 190,00',
+        desconto: '-17%', ultimas: true,
         specs: ['3,05 m', 'Rede naval reforçada', 'Uso intenso'],
         resumo: 'Equilíbrio entre tamanho e retorno para quem aluga.'
     },
     {
         nome: 'Cama Elástica 4,27M', linha: 'Modelo Tradicional', grupo: 'tradicional',
         img: '../assets/camas/427-nacional.png',
-        de: 'R$ 3.500,00', pix: 'R$ 2.898,00', parcela: 'R$ 308,11',
+        de: 'R$ 3.597,00', pix: 'R$ 2.997,00', parcela: 'R$ 287,00',
         desconto: '-17%',
         specs: ['4,27 m', 'Rede naval reforçada', 'Alta capacidade'],
         resumo: 'Cabe muita criança de uma vez — favorita das festas.'
@@ -50,8 +50,8 @@ var CAMAS = [
     {
         nome: 'Cama Elástica 4,90M', linha: 'Modelo Tradicional', grupo: 'tradicional',
         img: '../assets/camas/490-nacional.png',
-        de: 'R$ 4.000,00', pix: 'R$ 3.497,00', parcela: 'R$ 371,80',
-        desconto: '-13%',
+        de: 'R$ 4.297,00', pix: 'R$ 3.597,00', parcela: 'R$ 343,00',
+        desconto: '-16%',
         specs: ['4,90 m', 'Rede naval reforçada', 'Alta capacidade'],
         resumo: 'A maior da linha, para eventos e locação profissional.'
     }
